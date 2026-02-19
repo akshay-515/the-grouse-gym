@@ -1,7 +1,19 @@
 import app from "./app";
+import config from "./config";
+import { db } from "./db";
 
-const PORT = process.env.PORT || 5000;
+const startServer = async () => {
+    try{
+        await db.query("SELECT 1");
+        console.log("Database connection verified");
 
-app.listen(PORT, () => {
-    console.log(`eee server running on port ${PORT}`)
-})
+        app.listen(config.port, () => {
+            console.log(`server running on port ${config.port}`);
+        });
+    } catch (error) {
+        console.error("Failed to start server:", error);
+        process.exit(1);
+    }
+};
+
+startServer();
