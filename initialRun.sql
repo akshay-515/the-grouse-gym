@@ -67,3 +67,10 @@ CREATE INDEX idx_members_phone ON members(phone);
 CREATE INDEX idx_memberships_member_id ON memberships(member_id);
 CREATE INDEX idx_memberships_end_date ON memberships(end_date);
 CREATE INDEX idx_payments_member_id ON payments(member_id);
+
+ALTER TABLE memberships
+DROP CONSTRAINT memberships_plan_type_check;
+
+ALTER TABLE memberships
+ADD CONSTRAINT memberships_plan_type_check
+CHECK (plan_type IN ('MONTHLY','QUARTERLY','HALF_YEARLY','YEARLY'));
