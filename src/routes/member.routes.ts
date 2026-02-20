@@ -4,7 +4,7 @@ import { Router } from "express";
 
 const router = Router();
 
-// router.use(authenticate);
+router.use(authenticate);
 
 router.post("/", createMember);
 router.get("/", getMembers);
