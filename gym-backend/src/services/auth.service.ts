@@ -1,4 +1,4 @@
-import { generateToken } from './../utils/jwt';
+import { generateToken } from '../utils/jwt';
 import bcrypt from 'bcrypt';
 import {db} from '../db';
 
