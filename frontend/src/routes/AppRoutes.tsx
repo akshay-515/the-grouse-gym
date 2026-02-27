@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login";
 
-export default function AppRoutes() {
+const AppRoutes = () => {
     return(
         <BrowserRouter>
           <Routes>
@@ -10,3 +10,5 @@ export default function AppRoutes() {
         </BrowserRouter>
     )
 }
+
+export default AppRoutes;
