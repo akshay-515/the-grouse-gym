@@ -4,7 +4,7 @@ export const getDashboardStats = async () => {
   const client = await db.connect();
 
   try {
-    const totalMembers = await client.query(
+    const totalMembers = await client.query(  
       `SELECT COUNT(*) FROM members`
     );
 
@@ -34,7 +34,7 @@ export const getDashboardStats = async () => {
     );
 
     const recentPayments = await client.query(
-      `SELECT p.id, m.name, p.amount, p.payment_date, p.payment_mode
+      `SELECT p.id, m.name AS member_name, p.amount, p.payment_date, p.payment_mode
        FROM payments p
        JOIN members m ON p.member_id = m.id
        ORDER BY p.payment_date DESC
