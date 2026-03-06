@@ -1,0 +1,55 @@
+.members-container {
+  width: 100%;
+}
+
+.members-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.add-btn {
+  padding: 10px 14px;
+  background: #10b981;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.search-input {
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.members-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.members-table th,
+.members-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.members-table th {
+  background: #f3f4f6;
+}
+
+.edit-btn {
+  padding: 6px 10px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  margin-right: 5px;
+}
+
+.delete-btn {
+  padding: 6px 10px;
+  background: #ef4444;
+  color: white;
+  border: none;
+}
