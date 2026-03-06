@@ -123,3 +123,11 @@ button:focus-visible {
 .navbar-heading{
   padding: 5px;
 }
+
+p {
+  color: grey;
+}
+
+td {
+  color: rgb(0, 0, 0);
+}

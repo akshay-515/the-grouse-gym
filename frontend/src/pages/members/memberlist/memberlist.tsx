@@ -63,8 +63,10 @@ const MemberList = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-    </div>
-        <table className="members-table">
+      </div>
+
+      <div className="table-wrapper">
+                <table className="members-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -105,6 +107,7 @@ const MemberList = () => {
             ))}
           </tbody>
         </table>
+      </div>
     </div>
   );
 };
