@@ -5,6 +5,7 @@ import Dashboard from "../pages/dashboard/dashboard";
 import AdminLayout from "../components/layouts/adminlayout";
 import AddMember from "../pages/members/addmember/addmember";
 import MemberList from "../pages/members/memberlist/memberlist";
+import EditMember from "../pages/members/updatemember/updatemember";
 
 const AppRoutes = () => {
     return(
@@ -17,7 +18,8 @@ const AppRoutes = () => {
               <Route element={<AdminLayout />}>
                 <Route path="/dashboard" element = {<Dashboard />} />
                 <Route path="/members/add" element = {<AddMember />}/>
-                <Route path="/members" element={<MemberList />}></Route>
+                <Route path="/members" element={<MemberList />} />
+                <Route path="/members/edit/:id" element={<EditMember />}/>
               </Route>
             </Route>
             

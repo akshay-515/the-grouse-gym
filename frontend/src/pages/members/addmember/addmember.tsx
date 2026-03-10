@@ -20,10 +20,9 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
         ...form,
         [name]: value
     });
-
 };
 
-const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -94,7 +93,7 @@ return (
             />
 
             <button type="submit">
-                {loading ? "Adding..." : "Add Memeber"}
+                {loading ? "Adding..." : "Add Member"}
             </button>
         </form>
     </div>
