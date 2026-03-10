@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import "./dashboard.css"
 
-interface RecentPayment {
-  id: number;
-  member_name: string;
-  amount: number;
-  payment_date: string;
-  paymment_mode: string;
-}
+// interface RecentPayment {
+//   id: number;
+//   member_name: string;
+//   amount: number;
+//   payment_date: string;
+//   paymment_mode: string;
+// }
 
 interface DashboardSummary {
   totalMembers: number;
