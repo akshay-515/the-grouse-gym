@@ -40,7 +40,7 @@ export const getMemberById = async (req: Request, res: Response) => {
         })
     } catch (error: any) {
         res.status(404).json({
-            success: false,
+            sucsess: false,
             message: error.message,
         });
     }
@@ -70,7 +70,7 @@ export const deleteMember = async (req: Request, res: Response) => {
         });
     } catch (error: any){
         res.status(404).json({
-            success: false,
+            sucess: false,
             message: error.message,
         });
     }

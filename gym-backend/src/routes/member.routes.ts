@@ -9,7 +9,7 @@ router.use(authenticate);
 router.post("/", createMember);
 router.get("/", getMembers);
 router.get("/:id", getMemberById);
-router.put("/:id", updateMembers);  
+router.put("/:id", updateMembers);
 router.delete("/:id", deleteMember);
 
 export default router;

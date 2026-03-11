@@ -1,19 +1,7 @@
 import { db } from "../db";
 
-interface Member{
-    name: string;
-    phone: string;
-    age: string;
-    gender: string; 
-    joined_date: string;
-}
-
-export const createMemberService = async (data: Member) => {    
+export const createMemberService = async (data: any) => {
     const { name, phone, age, gender, joined_date } = data;
-
-    if(!name || !phone || !age || !gender || !joined_date){
-        throw new Error("All fields are required");
-    }
 
     const result = await db.query(
         `INSERT INTO members ( name, phone, age, gender, joined_date)
@@ -46,17 +34,7 @@ export const getMemberByIdService = async (id: number) => {
 };
 
 export const updateMemberService = async (id: number, data: any) => {
-    // const {name, phone, age, gender} = data;
-
-    const existing = await getMemberByIdService(id);
-    if(!existing) {
-        throw new Error("Member not found")
-    }
-
-    const updatedName = data.name ?? existing.name;
-    const updatedPhone = data.phone ?? existing.phone;
-    const updatedAge = data.age ?? existing.age;
-    const updatedGender = data.gender ?? existing.gender;
+    const {name, phone, age, gender} = data;
 
     const result = await db.query(
         `UPDATE members
@@ -66,7 +44,7 @@ export const updateMemberService = async (id: number, data: any) => {
             gender = $4
          WHERE id = $5 
          RETURNING *`,
-        [updatedName, updatedPhone, updatedAge, updatedGender, id]
+        [name, phone, age, gender, id]
     );
 
     if (result.rows.length === 0) {
