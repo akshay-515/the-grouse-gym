@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth.routes";
 import memberRoutes from "./routes/member.routes";
 import paymentRoutes from "./routes/payment.routes";
 import dashboardRoutes from "./routes/dashboard.routes";
+import membershipsRoutes from "./routes/memberships.routes";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/members", memberRoutes)
 app.use("/api/payments", paymentRoutes)
 app.use("/api/dashboard", dashboardRoutes)
+app.use("/api/memberships", membershipsRoutes);
 
 //health check
 app.get("/health", (_req,res) => {

@@ -6,6 +6,7 @@ import AdminLayout from "../components/layouts/adminlayout";
 import AddMember from "../pages/members/addmember/addmember";
 import MemberList from "../pages/members/memberlist/memberlist";
 import EditMember from "../pages/members/updatemember/updatemember";
+import Memberships from "../pages/memberships/memberships";
 
 const AppRoutes = () => {
     return(
@@ -20,6 +21,7 @@ const AppRoutes = () => {
                 <Route path="/members/add" element = {<AddMember />}/>
                 <Route path="/members" element={<MemberList />} />
                 <Route path="/members/edit/:id" element={<EditMember />}/>
+                <Route path="memberships" element={<Memberships />}/>
               </Route>
             </Route>
             
