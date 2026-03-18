@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api/axios";
+import "./memberlist.css"
 
 interface Member {
   id: number;
@@ -57,26 +58,33 @@ const MemberList = () => {
   return (
     <div className="members-container">
       <div className="members-header">
-        <h3>Members</h3>
-        <button 
-          className="add-btn"
-          onClick={() => navigate("/members/add")}
-        >
-          Add Member
-        </button>
+        <div className="header-left">
+          <h3>Members</h3>
+          <p className="sub-text">Manage all gym members</p>
+        </div>
 
-        <input 
-          className="search-input"
-          placeholder="Search member..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className="header-right">
+          <input 
+            className="search-input"
+            placeholder="Search member..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          <button 
+            className="add-btn"
+            onClick={() => navigate("/members/add")}
+          >
+            + Add Member
+          </button>
+        </div>
       </div>
 
       <div className="table-wrapper">
                 <table className="members-table">
           <thead>
             <tr>
+              <th>S.No</th>
               <th>ID</th>
               <th>Name</th>
               <th>Phone</th>
@@ -86,33 +94,43 @@ const MemberList = () => {
               <th>Actions</th>
             </tr>
           </thead>
-
           <tbody>
-            {filteredMembers.map((member) => (
-              <tr key={member.id}>
-                <td>{member.id}</td>
-                <td>{member.name}</td>
-                <td>{member.phone}</td>
-                <td>{member.age}</td>
-                <td>{member.gender}</td>
-                <td>{new Date(member.joined_date).toLocaleDateString()}</td>
-                <td>
-                  <button 
-                    className="edit-btn"
-                    onClick={() => navigate(`/members/edit/${member.id}`)}
-                  >
-                    Edit
-                  </button>
-
-                  <button 
-                    className="delete-btn"
-                    onClick={() => deleteMember(member.id)}
-                  >
-                    Delete
-                  </button>
+            {filteredMembers.length === 0 ? (
+              <tr>
+                <td colSpan={7} style={{ textAlign: "center", padding: "20px" }}>
+                  No members found
                 </td>
               </tr>
-            ))}
+            ) : (
+              filteredMembers.map((member, index) => (
+                <tr key={member.id}>
+                  <td>{index + 1}</td>
+                  <td>{member.id}</td>
+                  <td>{member.name}</td>
+                  <td>{member.phone}</td>
+                  <td>{member.age}</td>
+                  <td>
+                    {member.gender.charAt(0).toUpperCase() + member.gender.slice(1)}
+                  </td>
+                  <td>{new Date(member.joined_date).toLocaleDateString()}</td>
+                  <td>
+                    <button
+                      className="edit-btn"
+                      onClick={() => navigate(`/members/edit/${member.id}`)}
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      className="delete-btn"
+                      onClick={() => deleteMember(member.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

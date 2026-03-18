@@ -1,26 +1,87 @@
-.membership-heading{
-    color: black;
+/* Container */
+.membership-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
 }
 
+/* Header */
+.membership-header {
+  margin-bottom: 20px;
+}
+
+.membership-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgb(111, 111, 111);
+}
+
+.sub-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Card Wrapper */
+.table-wrapper {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  overflow-x: auto;
+}
+
+/* Table */
 .membership-table {
   width: 100%;
   border-collapse: collapse;
-  background: rgb(150, 150, 150);
-  border-color: rgb(78, 76, 76);
+  min-width: 800px;
 }
 
-.membership-table th,
+/* Header */
+.membership-table th {
+  background: #f9fafb;
+  padding: 14px 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+/* Cells */
 .membership-table td {
-  padding: 12px;
-  border-bottom: 1px solid #010611;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f3f4f6;
 }
 
-.active {
-  color: green;
-  font-weight: bold;
+/* Hover */
+.membership-table tr:hover {
+  background: #f9fafb;
 }
 
-.expired {
-  color: red;
-  font-weight: bold;
+/* Status Badge (🔥 BIG UI IMPROVEMENT) */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* Active */
+.status-badge.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* Expired */
+.status-badge.expired {
+  background: #fee2e2;
+  color: #991b1b;
 }

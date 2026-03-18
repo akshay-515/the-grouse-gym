@@ -1,59 +1,96 @@
+/* Container */
 .payments-container {
-  max-width: 500px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
-.payments-container h2 {
+/* Header */
+.payment-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgb(111, 111, 111);
+}
+
+.sub-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 4px;
   margin-bottom: 20px;
-  font-weight: 600;
 }
 
-.payment-form {
+/* Card */
+.form-card {
   background: white;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+/* Form */
+.payment-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
+/* Group */
 .form-group {
   display: flex;
   flex-direction: column;
 }
 
 .form-group label {
-  font-size: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
   margin-bottom: 6px;
   color: #374151;
 }
 
-.form-group input,
-.form-group select {
-  padding: 9px 10px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  font-size: 14px;
+/* Row Layout */
+.form-row {
+  display: flex;
+  gap: 12px;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-  outline: none;
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Inputs */
+.payment-form input,
+.payment-form select {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+
+/* Focus */
+.payment-form input:focus,
+.payment-form select:focus {
   border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
 }
 
+/* Button */
 .submit-btn {
   margin-top: 10px;
-  padding: 11px;
-  background: #2563eb;
+  padding: 12px;
+  background: linear-gradient(135deg, #10b981, #059669); /* green for money 💰 */
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
+  transition: 0.2s ease;
 }
 
 .submit-btn:hover {
-  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
 }

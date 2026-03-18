@@ -1,127 +1,140 @@
-/* Container & Global Styles */
+/* Container */
 .members-container {
-  width: 100%;
-  max-width: 1200px; /* Prevents the table from stretching too wide on huge screens */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 24px;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: #1f2937;
 }
 
-/* Header Section */
+/* Header Layout */
 .members-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end; /* Aligns search and button nicely */
+  align-items: center;
   margin-bottom: 24px;
 }
 
-.members-header h3 {
-  font-size: 1.5rem;
+.header-left h3 {
+  font-size: 1.6rem;
   font-weight: 700;
   margin: 0;
-  color: #111827;
 }
 
-/* Search Input */
+.sub-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+/* Right Section */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Search */
 .search-input {
-  padding: 10px 16px;
-  width: 320px;
+  padding: 10px 14px;
+  width: 260px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.2s ease;
-  outline: none;
 }
 
 .search-input:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
 }
 
-/* Primary Action Button */
+/* Add Button */
 .add-btn {
-  padding: 10px 20px;
-  background: #059669; /* Slightly deeper emerald */
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #10b981, #059669);
   border: none;
   color: white;
   border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: 0.2s ease;
 }
 
 .add-btn:hover {
-  background: #047857;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
 }
 
-/* Modern Table Styling */
+/* Table Card */
 .table-wrapper {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  overflow: hidden; /* Keeps corners rounded */
   border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  overflow: hidden;
 }
 
+/* Table */
 .members-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 900px;
 }
 
+/* Header */
 .members-table th {
   background: #f9fafb;
-  padding: 14px 20px;
-  font-size: 0.85rem;
+  padding: 14px 18px;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.025em;
   color: #6b7280;
   border-bottom: 1px solid #e5e7eb;
 }
 
+/* Cells */
 .members-table td {
-  padding: 16px 20px;
+  padding: 14px 18px;
   font-size: 0.95rem;
   border-bottom: 1px solid #f3f4f6;
-  vertical-align: middle;
 }
 
-.members-table tr:last-child td {
-  border-bottom: none;
-}
-
+/* Row Hover */
 .members-table tr:hover {
-  background-color: #f9fafb; /* Subtle highlight on hover */
+  background: #f9fafb;
 }
 
-/* Action Buttons */
+/* Actions */
 .edit-btn, .delete-btn {
   padding: 6px 12px;
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
-  border: 1px solid transparent;
+  border: none;
 }
 
+/* Edit */
 .edit-btn {
-  background: #eff6ff;
-  color: #1e40af;
-  margin-right: 8px;
+  background: #eef2ff;
+  color: #3730a3;
+  margin-right: 6px;
 }
 
 .edit-btn:hover {
-  background: #dbeafe;
+  background: #e0e7ff;
 }
 
+/* Delete */
 .delete-btn {
-  background: #fef2f2;
+  background: #fee2e2;
   color: #991b1b;
 }
 
 .delete-btn:hover {
-  background: #fee2e2;
+  background: #fecaca;
 }

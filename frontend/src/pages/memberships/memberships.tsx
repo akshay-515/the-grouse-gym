@@ -33,33 +33,47 @@ const Memberships = () => {
 
     return (
         <div className="membership-container">
-            <h2 className="membership-heading">Memberships</h2>
-            <table className="membership-table">
+            <div className="membership-header">
+                <div>
+                <h2>Memberships</h2>
+                <p className="sub-text">Track all active and expired memberships</p>
+                </div>
+            </div>
+
+            <div className="table-wrapper">
+                <table className="membership-table">
                 <thead>
                     <tr>
-                        <th>Member</th>
-                        <th>Plan</th>
-                        <th>Start</th>
-                        <th>End</th>
-                        <th>Status</th>                        
+                    <th>S.No</th>
+                    <th>Member</th>
+                    <th>Plan</th>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Status</th>                        
                     </tr>
                 </thead>
 
                 <tbody>
-                    {memberships.map((m) => (
-                        <tr key={m.id}>
-                            <td>{m.member_name}</td>
-                            <td>{m.plan_type}</td>
-                            <td>{new Date(m.start_date).toLocaleDateString()}</td>
-                            <td>{new Date(m.end_date).toLocaleDateString()}</td>
-                            <td className={getStatus(m.end_date) === "Active" ? "active" : "expired"}>
-                                {getStatus(m.end_date)}
-                            </td>
-                        </tr>
+                    {memberships.map((m, index) => (
+                    <tr key={m.id}>
+                        <td>{index + 1}</td>
+                        <td>{m.member_name}</td>
+                        <td>{m.plan_type}</td>
+                        <td>{new Date(m.start_date).toLocaleDateString()}</td>
+                        <td>{new Date(m.end_date).toLocaleDateString()}</td>
+
+                        <td>
+                        <span className={`status-badge ${getStatus(m.end_date) === "Active" ? "active" : "expired"}`}>
+                            {getStatus(m.end_date)}
+                        </span>
+                        </td>
+                    </tr>
                     ))}
                 </tbody>
-            </table>
-        </div>
+                </table>
+            </div>
+
+            </div>
     );
 };
 

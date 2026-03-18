@@ -46,44 +46,66 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
 
 return (
     <div className="member-container">
+      <div className="member-header">
         <h2>Add New Member</h2>
+        <p className="sub-text">Enter member details to register</p>
+      </div>
+
+      <div className="form-card">
         <form className="member-form" onSubmit={handleSubmit}>
+
+          <div className="form-group">
+            <label>Name</label>
             <input 
               name="name"
-              placeholder="Member Name"
+              placeholder="Enter member name"
               value={form.name}
               onChange={handleChange}
               required
             />
+          </div>
 
+          <div className="form-group">
+            <label>Phone</label>
             <input 
               name="phone"
-              placeholder="Phone Number"
+              placeholder="Enter phone number"
               value={form.phone}
               onChange={handleChange}
               required
             />
+          </div>
 
-            <input 
-              name="age"
-              type="number"
-              placeholder="Age"
-              value={form.age}
-              onChange={handleChange}
-              required
-            />
+          <div className="form-row">
+            <div className="form-group">
+              <label>Age</label>
+              <input 
+                name="age"
+                type="number"
+                placeholder="Age"
+                value={form.age}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-            <select 
-              name="gender" 
-              value={form.gender}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            <div className="form-group">
+              <label>Gender</label>
+              <select 
+                name="gender" 
+                value={form.gender}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
 
+          <div className="form-group">
+            <label>Joining Date</label>
             <input 
               name="joined_date"
               type="date"
@@ -91,11 +113,15 @@ return (
               onChange={handleChange}
               required
             />
+          </div>
 
-            <button type="submit">
-                {loading ? "Adding..." : "Add Member"}
-            </button>
+          <button type="submit" className="submit-btn">
+            {loading ? "Adding..." : "Add Member"}
+          </button>
+
         </form>
+      </div>
+
     </div>
     );
 };

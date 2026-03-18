@@ -7,7 +7,7 @@ const Sidebar = () => {
 
             <nav>
                 <Link to="/dashboard">Dashboard</Link>
-                <Link to="/members/add">Members</Link>
+                <Link to="/members/add">Add Members</Link>
                 <Link to="/members">Members List</Link>
                 <Link to="/payments">Payments</Link>
                 <Link to="/memberships">Memberships</Link>

@@ -85,68 +85,96 @@ const Payments = () => {
 
     return(
         <div className="payments-container">
-            <h2>Record Payment</h2>
-            <form onSubmit={handleSubmit} className="payment-form">
-                <label>Member</label>
-                <select 
-                  name="member_id"
-                  value={form.member_id}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Select Member</option>
-                  {members.map((m) => (
-                    <option key={m.id} value={m.id}>{m.name}</option>
-                   ))}
-                </select>
+            <div className="payment-header">
+                <h2>Record Payment</h2>
+                <p className="sub-text">Create payment and activate membership</p>
+            </div>
 
-                <label>Plan Type</label>
-                <select 
-                  name="plan_type" 
-                  value={form.plan_type}
-                  onChange={handleChange}
-                  required
-                >
-                    <option value="MONTHLY">Monthly</option>
-                    <option value="QUARTERLY">Quarterly</option>
-                    <option value="HALF_YEARLY">Half Yearly</option>
-                    <option value="YEARLY">Yearly</option>
-                </select>
+            <div className="form-card">
+                <form onSubmit={handleSubmit} className="payment-form">
 
-                <label>Amount</label>
-                <input 
-                  type="number"
-                  name="amount"
-                  value={form.amount}
-                  placeholder="amount"
-                  onChange={handleChange}
-                  required
-                />
+                {/* Member */}
+                <div className="form-group">
+                    <label>Member</label>
+                    <select 
+                    name="member_id"
+                    value={form.member_id}
+                    onChange={handleChange}
+                    required
+                    >
+                    <option value="">Select Member</option>
+                    {members.map((m) => (
+                        <option key={m.id} value={m.id}>{m.name}</option>
+                    ))}
+                    </select>
+                </div>
 
-                <label>Payment Mode</label>
-                <select 
-                  name="payment_mode" 
-                  value={form.payment_mode} 
-                  onChange={handleChange} 
-                  required
-                >
-                  <option value="CASH">Cash</option>
-                  <option value="UPI">UPI</option>
-                  <option value="CARD">Card</option>
-                </select>
+                {/* Plan + Amount */}
+                <div className="form-row">
+                    <div className="form-group">
+                    <label>Plan Type</label>
+                    <select 
+                        name="plan_type" 
+                        value={form.plan_type}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="MONTHLY">Monthly</option>
+                        <option value="QUARTERLY">Quarterly</option>
+                        <option value="HALF_YEARLY">Half Yearly</option>
+                        <option value="YEARLY">Yearly</option>
+                    </select>
+                    </div>
 
-                <label>Payment Date</label>
-                <input 
-                  type="date" 
-                  name="payment_date" 
-                  value={form.payment_date} 
-                  onChange={handleChange} 
-                  required 
-                />
+                    <div className="form-group">
+                    <label>Amount</label>
+                    <input 
+                        type="number"
+                        name="amount"
+                        value={form.amount}
+                        placeholder="Enter amount"
+                        onChange={handleChange}
+                        required
+                    />
+                    </div>
+                </div>
 
-                <button type="submit">Record Payment</button>
-            </form>
-        </div>
+                {/* Payment Mode + Date */}
+                <div className="form-row">
+                    <div className="form-group">
+                    <label>Payment Mode</label>
+                    <select 
+                        name="payment_mode" 
+                        value={form.payment_mode} 
+                        onChange={handleChange} 
+                        required
+                    >
+                        <option value="CASH">Cash</option>
+                        <option value="UPI">UPI</option>
+                        <option value="CARD">Card</option>
+                    </select>
+                    </div>
+
+                    <div className="form-group">
+                    <label>Payment Date</label>
+                    <input 
+                        type="date" 
+                        name="payment_date" 
+                        value={form.payment_date} 
+                        onChange={handleChange} 
+                        required 
+                    />
+                    </div>
+                </div>
+
+                <button type="submit" className="submit-btn">
+                    Record Payment
+                </button>
+
+                </form>
+            </div>
+
+            </div>
     );
 };
 

@@ -1,29 +1,96 @@
+/* Container */
 .member-container {
-  max-width: 500px;
-  margin: auto;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
+/* Header */
+.member-header h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: rgb(111, 111, 111);
+}
+
+.sub-text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+/* Card */
+.form-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+/* Form */
 .member-form {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* Row (Age + Gender side by side) */
+.form-row {
+  display: flex;
   gap: 12px;
 }
 
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Inputs */
 .member-form input,
 .member-form select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
 }
 
-.member-form button {
+/* Focus */
+.member-form input:focus,
+.member-form select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+/* Button */
+.submit-btn {
+  margin-top: 10px;
   padding: 12px;
-  background: #2563eb;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.member-form button:hover {
-  background: #1e40af;
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
 }
