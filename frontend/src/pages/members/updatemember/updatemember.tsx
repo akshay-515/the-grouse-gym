@@ -69,51 +69,74 @@ const EditMember = () => {
 
     return(
         <div className="member-container">
-            <h2 className="updatemember-heading">Update Member</h2>
-            <form onSubmit={handleSubmit} className="member-form">
-                <input 
-                  name="name"
-                  placeholder="New Member Name"
-                  value={form.name}
-                  onChange={handleChange} 
-                />
+            <div className="member-header">
+                <h2>Update Member</h2>
+                <p className="sub-text">Modify member details</p>
+            </div>
 
-                <input 
-                  name="phone"
-                  placeholder="Phone Number"
-                  value={form.phone}
-                  onChange={handleChange}
-                />
+            <div className="form-card">
+                <form onSubmit={handleSubmit} className="member-form">
 
-                <input
-                  name="age"
-                  type="number"
-                  placeholder="Age"
-                  value={form.age}
-                  onChange={handleChange}  
-                />
+                <div className="form-group">
+                    <label>Name</label>
+                    <input 
+                    name="name"
+                    placeholder="Enter member name"
+                    value={form.name}
+                    onChange={handleChange} 
+                    />
+                </div>
 
-                <select 
-                  name="gender"
-                  value={form.gender}
-                  onChange={handleChange}
-                >
-                  <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>  
-                </select>
+                <div className="form-group">
+                    <label>Phone</label>
+                    <input 
+                    name="phone"
+                    placeholder="Enter phone number"
+                    value={form.phone}
+                    onChange={handleChange}
+                    />
+                </div>
 
-                <input 
-                  name="joined_date" 
-                  type="date"
-                  value={form.joined_date}
-                  onChange={handleChange} 
-                />
+                <div className="form-row">
+                    <div className="form-group">
+                    <label>Age</label>
+                    <input
+                        name="age"
+                        type="number"
+                        placeholder="Age"
+                        value={form.age}
+                        onChange={handleChange}  
+                    />
+                    </div>
 
-                <button type="submit">
+                    <div className="form-group">
+                    <label>Gender</label>
+                    <select 
+                        name="gender"
+                        value={form.gender}
+                        onChange={handleChange}
+                    >
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>  
+                    </select>
+                    </div>
+                </div>
+
+                <div className="form-group">
+                    <label>Joining Date</label>
+                    <input 
+                    name="joined_date" 
+                    type="date"
+                    value={form.joined_date}
+                    onChange={handleChange} 
+                    />
+                </div>
+                <button type="submit" className="submit-btn update-btn">
                     {loading ? "Updating..." : "Update Member"}
                 </button>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }
