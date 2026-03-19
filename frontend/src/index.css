@@ -13,6 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -110,14 +115,16 @@ button:focus-visible {
 }
 
 .page-content {
-  padding: 20px;
   background-color: #f9fafb;
   flex: 1;
+  padding: 20px;
 }
 
 .topnavbar{
   display: flex;
+  height: 3.5rem;
   justify-content: space-between;
+  align-items: center;
 }
 
 .navbar-heading{

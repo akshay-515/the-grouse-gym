@@ -68,16 +68,16 @@ const EditMember = () => {
     }
 
     return(
-        <div className="member-container">
-            <div className="member-header">
+        <div className="update-member-container">
+            <div className="update-member-header">
                 <h2>Update Member</h2>
                 <p className="sub-text">Modify member details</p>
             </div>
 
-            <div className="form-card">
-                <form onSubmit={handleSubmit} className="member-form">
+            <div className="update-form-card">
+                <form onSubmit={handleSubmit} className="update-member-form">
 
-                <div className="form-group">
+                <div className="update-form-group">
                     <label>Name</label>
                     <input 
                     name="name"
@@ -87,7 +87,7 @@ const EditMember = () => {
                     />
                 </div>
 
-                <div className="form-group">
+                <div className="update-form-group">
                     <label>Phone</label>
                     <input 
                     name="phone"
@@ -97,7 +97,7 @@ const EditMember = () => {
                     />
                 </div>
 
-                <div className="form-row">
+                <div className="update-form-row">
                     <div className="form-group">
                     <label>Age</label>
                     <input
@@ -109,7 +109,7 @@ const EditMember = () => {
                     />
                     </div>
 
-                    <div className="form-group">
+                    <div className="update-form-group">
                     <label>Gender</label>
                     <select 
                         name="gender"
@@ -123,7 +123,7 @@ const EditMember = () => {
                     </div>
                 </div>
 
-                <div className="form-group">
+                <div className="update-form-group">
                     <label>Joining Date</label>
                     <input 
                     name="joined_date" 

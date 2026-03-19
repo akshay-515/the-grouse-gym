@@ -1,10 +1,10 @@
-.member-container {
+.add-member-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 24px;
 }
 
-.member-header h2 {
+.add-member-header h2 {
   margin: 0;
   font-size: 1.6rem;
   font-weight: 700;
@@ -18,7 +18,7 @@
   margin-bottom: 20px;
 }
 
-.form-card {
+.add-form-card {
   background: white;
   border-radius: 12px;
   border: 1px solid #e5e7eb;
@@ -26,44 +26,52 @@
   padding: 20px;
 }
 
-.member-form {
+.add-member-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.form-group {
+.add-form-group {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-.form-group label {
+.add-form-group label {
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 6px;
   color: #374151;
 }
 
-.form-row {
+.add-form-row {
   display: flex;
-  gap: 12px;
+  gap: 17px;
 }
 
-.form-row .form-group {
+.add-form-row .add-form-group {
   flex: 1;
 }
 
-.member-form input,
-.member-form select {
+.add-member-form input,
+.add-member-form select {
+  width: 94%;
   padding: 10px 12px;
+  background-color: #f9fafb;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 0.9rem;
+  color: #111827;
   transition: 0.2s ease;
 }
 
-.member-form input:focus,
-.member-form select:focus {
+.add-member-form input::placeholder {
+  color: #9ca3af;
+}
+
+.add-member-form input:focus,
+.add-member-form select:focus {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
   outline: none;
@@ -84,4 +92,13 @@
 .submit-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.calendar-icon {
+  position: absolute;
+  right: 12px;
+  font-size: 22px;
+  top: 68%;
+  transform: translateY(-50%);
+  pointer-events: none;
 }

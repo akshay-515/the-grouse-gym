@@ -45,16 +45,16 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
 }; 
 
 return (
-    <div className="member-container">
-      <div className="member-header">
+    <div className="add-member-container">
+      <div className="add-member-header">
         <h2>Add New Member</h2>
         <p className="sub-text">Enter member details to register</p>
       </div>
 
-      <div className="form-card">
-        <form className="member-form" onSubmit={handleSubmit}>
+      <div className="add-form-card">
+        <form className="add-member-form" onSubmit={handleSubmit}>
 
-          <div className="form-group">
+          <div className="add-form-group">
             <label>Name</label>
             <input 
               name="name"
@@ -65,7 +65,7 @@ return (
             />
           </div>
 
-          <div className="form-group">
+          <div className="add-form-group">
             <label>Phone</label>
             <input 
               name="phone"
@@ -76,8 +76,8 @@ return (
             />
           </div>
 
-          <div className="form-row">
-            <div className="form-group">
+          <div className="add-form-row">
+            <div className="add-form-group">
               <label>Age</label>
               <input 
                 name="age"
@@ -89,7 +89,7 @@ return (
               />
             </div>
 
-            <div className="form-group">
+            <div className="add-form-group">
               <label>Gender</label>
               <select 
                 name="gender" 
@@ -104,15 +104,17 @@ return (
             </div>
           </div>
 
-          <div className="form-group">
+          <div className="add-form-group">
             <label>Joining Date</label>
             <input 
+              className="add-member-date"
               name="joined_date"
               type="date"
               value={form.joined_date}
               onChange={handleChange}
               required
             />
+            <span className="calendar-icon">📅</span>
           </div>
 
           <button type="submit" className="submit-btn">

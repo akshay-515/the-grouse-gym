@@ -1,0 +1,126 @@
+.login-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: 
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url("../../assets/gym bg1.webp");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.login-card {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  padding: 32px;
+  width: 350px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+
+  text-align: center;
+  color: white;
+}
+
+.login-card h2 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+.login-subtext {
+  font-size: 14px;
+  color: #9ca3af;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: #d1d5db;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.form-group input {
+  width: 94%;
+  padding: 11px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  font-size: 14px;
+
+  background: rgba(255,255,255,0.05);
+  color: white;
+
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.form-group input:focus {
+  border-color: #3b82f6;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
+}
+
+/* .login-btn {
+  width: 100%;
+  padding: 11px;
+  margin-top: 12px;
+
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+  transition: all 0.25s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
+  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+} */
+
+.login-btn {
+  width: 100%;
+  padding: 11px;
+  margin-top: 12px;
+
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  transition: all 0.25s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 25px rgba(249, 115, 22, 0.6);
+  background: linear-gradient(135deg, #dc2626, #ea580c);
+}

@@ -93,7 +93,6 @@ const Payments = () => {
             <div className="form-card">
                 <form onSubmit={handleSubmit} className="payment-form">
 
-                {/* Member */}
                 <div className="form-group">
                     <label>Member</label>
                     <select 
@@ -109,7 +108,6 @@ const Payments = () => {
                     </select>
                 </div>
 
-                {/* Plan + Amount */}
                 <div className="form-row">
                     <div className="form-group">
                     <label>Plan Type</label>
@@ -139,7 +137,6 @@ const Payments = () => {
                     </div>
                 </div>
 
-                {/* Payment Mode + Date */}
                 <div className="form-row">
                     <div className="form-group">
                     <label>Payment Mode</label>
