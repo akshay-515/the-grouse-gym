@@ -20,6 +20,11 @@
         payment_mode: string,
         plan_type: string
     ) => {
+        
+        if (!member_id || isNaN(member_id)) {
+            throw new Error("Invalid member_id");
+        }
+        
         const client = await db.connect();
 
         try{

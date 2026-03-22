@@ -89,3 +89,16 @@ export const deleteMemberService = async (id: number) => {
 
     return result.rows[0];
 };
+
+export const getEligibleMembersService = async () => {
+    const result = await db.query(`
+        SELECT m.id, m.name
+        FROM members m
+        LEFT JOIN memberships ms
+          ON m.id = ms.member_id
+          AND ms.end_date >= CURRENT_DATE
+        WHERE ms.id IS NULL
+        ORDER BY m.name ASC`);
+
+    return result.rows;
+}

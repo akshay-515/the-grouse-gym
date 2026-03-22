@@ -12,6 +12,9 @@ interface Membership {
 
 const Memberships = () => {
     const[memberships, setMemberships] = useState<Membership[]>([])
+    const [page, setPage] = useState(1);
+
+    const rowsPerPage = 7;
 
     useEffect(() => {
         const fetchmemberships = async() => {
@@ -30,6 +33,19 @@ const Memberships = () => {
         const end = new Date(end_date);
         return end >= today ? "Active" : "Expired";
     };
+
+    const paginatedMemberships = memberships.slice(
+        (page - 1) * rowsPerPage,
+        page * rowsPerPage
+    );
+
+    const totalPages = Math.max(1, Math.ceil(memberships.length / rowsPerPage));
+
+    useEffect(() => {
+        if (page > totalPages) {
+            setPage(totalPages);
+        }
+    }, [memberships, totalPages]);
 
     return (
         <div className="membership-container">
@@ -54,7 +70,7 @@ const Memberships = () => {
                 </thead>
 
                 <tbody>
-                    {memberships.map((m, index) => (
+                    {paginatedMemberships.map((m, index) => (
                     <tr key={m.id}>
                         <td>{index + 1}</td>
                         <td>{m.member_name}</td>
@@ -73,6 +89,23 @@ const Memberships = () => {
                 </table>
             </div>
 
+            <div className="pagination">
+                <button
+                    disabled={page === 1}
+                    onClick={() => setPage(page - 1)}
+                >
+                    Prev
+                </button>
+
+                <span>Page {page} of {totalPages}</span>
+
+                <button
+                    disabled={page === totalPages}
+                    onClick={() => setPage(page + 1)}
+                >
+                    Next
+                </button>
+                </div>
             </div>
     );
 };

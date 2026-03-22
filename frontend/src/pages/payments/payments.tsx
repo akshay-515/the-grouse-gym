@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./payments.css"
 import api from "../../api/axios";
+import { data } from "react-router-dom";
 
 interface Member {
     id: number;
@@ -19,26 +20,36 @@ const Payments = () => {
     const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
         member_id: "",
-        amount: "",
+        amount: PLAN_PRICES["MONTHLY"].toString(),
         payment_mode: "CASH",
         payment_date: "",
         plan_type: "MONTHLY"
     });
 
-    useEffect(() => {
-        const fetchMembers = async () => {
-            setLoading(true);
-          try{
-            const res =await api.get("/members");
+    const fetchMembers = async () => {
+        setLoading(true);
+        try{
+            console.log("Submitting member_id:", form.member_id);
+            const res =await api.get("/members/eligible");
             setMembers(res.data.data);
-          } catch (error) {
+
+            if(res.data.data.length > 0) {
+                setForm(prev => ({
+                    ...prev,
+                    // member_id: res.data.data[0].id.toString()
+                    member_id: prev.member_id || res.data.data[0].id.toString()
+                }));
+            }
+        } catch (error) {
             console.error("failed to load members");
-          } finally {
+        } finally {
             setLoading(false);
-          }
-        };
+        }
+    };
+
+    useEffect(() => {
         fetchMembers();
-    }, []);
+    },[]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target;
@@ -62,22 +73,40 @@ const Payments = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        const memberIdNumber = Number(form.member_id);
+        const amountNumber = Number(form.amount);
+
+        if (!form.member_id || isNaN(memberIdNumber)) {
+            alert("Please select a valid member");
+            return;
+        }
+
+        console.log("member_id raw:", form.member_id);
+        console.log("member_id number:", Number(form.member_id));
+        console.log("i created", memberIdNumber)
+
+        if(isNaN(amountNumber) || amountNumber <= 0) {
+            alert("plesae enter a valid payment amount");
+            return;
+        }
+
         try {
             await api.post("/payments", {
                 ...form,
-                member_id: Number(form.member_id),
-                amount: Number(form.amount)
-            })
-
-            alert("Payment recorded successfully")
-
-            setForm({
-                member_id: "",
-                amount:"",
-                payment_mode: "CASH",
-                payment_date: "",
-                plan_type:"MONTHLY"
+                member_id: memberIdNumber,
+                amount: amountNumber
             });
+
+            alert("Payment recorded successfully");
+
+            await fetchMembers();
+
+            setForm(prev => ({
+                ...prev,
+                amount: PLAN_PRICES["MONTHLY"].toString(),
+                payment_date: ""
+            }));
+
         } catch (error) {
             alert("Failed to record Payment");
         }

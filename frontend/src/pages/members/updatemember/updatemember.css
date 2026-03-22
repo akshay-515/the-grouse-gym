@@ -8,6 +8,7 @@
   margin: 0;
   font-size: 1.6rem;
   font-weight: 700;
+  color: rgb(111, 111, 111);
 }
 
 .sub-text {
@@ -45,7 +46,7 @@
 
 .update-form-row {
   display: flex;
-  gap: 12px;
+  gap: 24px;
 }
 
 .update-form-row .update-form-group {
@@ -58,11 +59,18 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 0.9rem;
-  transition: 0.2s ease;
+  background-color: #f9fafb;   /* FIX */
+  color: #111827;
+  transition: all 0.2s ease;
+}
+
+.update-member-form input::placeholder {
+  color: #9ca3af;
 }
 
 .update-member-form input:focus,
 .update-member-form select:focus {
+  background-color: #ffffff;
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
   outline: none;
@@ -91,4 +99,9 @@
 
 .update-btn:hover {
   box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+}
+
+.update-member-form input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.4) sepia(1) saturate(5) hue-rotate(190deg);
+  cursor: pointer;
 }

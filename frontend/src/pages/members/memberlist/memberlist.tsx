@@ -13,11 +13,13 @@ interface Member {
 }
 
 const MemberList = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [members, setMembers] = useState<Member[]>([]);
-    const [search, setSearch]  = useState("");
-
+  const [members, setMembers] = useState<Member[]>([]);
+  const [search, setSearch]   = useState("");
+  const [page , setPage]      = useState(1);
+  
+  const rowsPerPage = 7;
 
   const fetchMembers = async () => {
     try {
@@ -55,6 +57,19 @@ const MemberList = () => {
     m.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const paginatedMembers = filteredMembers.slice(
+    (page - 1) * rowsPerPage,
+    page * rowsPerPage
+  );
+
+  const totalPages = Math.max(1, Math.ceil(filteredMembers.length / rowsPerPage));
+
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages);
+    }
+  }, [filteredMembers, totalPages]);
+
   return (
     <div className="members-container">
       <div className="members-header">
@@ -68,7 +83,10 @@ const MemberList = () => {
             className="search-input"
             placeholder="Search member..."
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) =>{
+              setSearch(e.target.value);
+              setPage(1);
+            }}
           />
 
           <button 
@@ -102,7 +120,7 @@ const MemberList = () => {
                 </td>
               </tr>
             ) : (
-              filteredMembers.map((member, index) => (
+              paginatedMembers.map((member, index) => (
                 <tr key={member.id}>
                   <td>{index + 1}</td>
                   <td>{member.id}</td>
@@ -134,6 +152,23 @@ const MemberList = () => {
           </tbody>
         </table>
       </div>
+      <div className="pagination">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+          >
+            prev
+          </button>
+
+          <span>Page {page} of {totalPages}</span>
+
+          <button
+            disabled = {page === totalPages}
+            onClick={() => setPage(page + 1)}
+          >
+            next
+          </button>
+        </div>
     </div>
   );
 };

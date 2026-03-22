@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as memberService from "../services/member.service";
+import { getEligibleMembersService } from "../services/member.service";
 
 export const createMember = async (req: Request, res: Response) => {
     try{
@@ -72,6 +73,21 @@ export const deleteMember = async (req: Request, res: Response) => {
         res.status(404).json({
             success: false,
             message: error.message,
+        });
+    }
+};
+
+export const getEligibleMembers = async (req: Request, res: Response) => {
+    try {
+        const members = await getEligibleMembersService();
+        res.status(200).json({
+            success: true,
+            data: members
+        });
+    } catch (error: any) {
+        res.status(500).json({
+            success: false,
+            message: error.message
         });
     }
 };
