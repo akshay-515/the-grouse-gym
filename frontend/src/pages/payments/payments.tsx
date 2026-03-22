@@ -101,7 +101,7 @@ const Payments = () => {
                     onChange={handleChange}
                     required
                     >
-                    <option value="">Select Member</option>
+                    <option value="" hidden>Select Member</option>
                     {members.map((m) => (
                         <option key={m.id} value={m.id}>{m.name}</option>
                     ))}

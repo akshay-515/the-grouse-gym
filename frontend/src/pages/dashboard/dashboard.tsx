@@ -7,7 +7,7 @@ import "./dashboard.css"
 //   member_name: string;
 //   amount: number;
 //   payment_date: string;
-//   paymment_mode: string;
+//   payment_mode: string;
 // }
 
 interface DashboardSummary {
@@ -39,6 +39,7 @@ const Dashboard = () => {
 
             const response = await api.get("/dashboard");
             setData(response.data.data)
+            console.log(response.data.data)
           } catch (err: any) {
             console.error("Dashboard fetch error:", err);
             setError("Failed to load dashboard data.");
@@ -95,27 +96,30 @@ const Dashboard = () => {
         {data.recentPayments &&  data.recentPayments.length === 0 ? (
           <p>No recent payments found.</p>
         ) : (
-          <table className="recent-table">
-            <thead>
-              <tr>
-                <th>Member</th>
-                <th>Amount</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.recentPayments.map((payment:any) => (
-                <tr key={payment.id}>
-                  <td>{payment.member_name}</td>
-                  <td>₹{payment.amount.toLocaleString()}</td>
-                  <td>{payment.paymment_mode}</td>
-                  <td>
-                    {new Date(payment.payment_date).toLocaleDateString()}
-                  </td>
+          <div className="recent-table-wrapper">
+            <table className="recent-table">
+              <thead>
+                <tr>
+                  <th>Member</th>
+                  <th>Amount</th>
+                  <th>Mode</th>
+                  <th>Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {data.recentPayments.map((payment:any) => (
+                  <tr key={payment.id}>
+                    <td>{payment.member_name}</td>
+                    <td>₹{payment.amount.toLocaleString()}</td>
+                    <td>{payment.payment_mode}</td>
+                    <td>
+                      {new Date(payment.payment_date).toLocaleDateString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>   
         )}
       </div>
     </div>

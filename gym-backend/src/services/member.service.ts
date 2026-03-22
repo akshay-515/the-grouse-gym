@@ -27,7 +27,8 @@ export const createMemberService = async (data: Member) => {
 
 export const getAllMembersService = async () => {
     const result = await db.query(
-        "SELECT * from members ORDER BY created_at DESC"
+        "SELECT * from members ORDER BY created_at DESC" 
+        
     );
     return result.rows;
 };
