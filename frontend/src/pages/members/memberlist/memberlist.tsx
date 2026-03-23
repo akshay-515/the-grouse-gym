@@ -122,7 +122,7 @@ const MemberList = () => {
             ) : (
               paginatedMembers.map((member, index) => (
                 <tr key={member.id}>
-                  <td>{index + 1}</td>
+                  <td>{(page - 1) * rowsPerPage + index + 1}</td>
                   <td>{member.id}</td>
                   <td>{member.name}</td>
                   <td>{member.phone}</td>
@@ -152,7 +152,9 @@ const MemberList = () => {
           </tbody>
         </table>
       </div>
-      <div className="pagination">
+
+      {totalPages >1 && (
+        <div className="pagination">
           <button
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
@@ -169,6 +171,7 @@ const MemberList = () => {
             next
           </button>
         </div>
+      )}
     </div>
   );
 };

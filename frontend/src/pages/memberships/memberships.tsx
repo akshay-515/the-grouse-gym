@@ -72,7 +72,7 @@ const Memberships = () => {
                 <tbody>
                     {paginatedMemberships.map((m, index) => (
                     <tr key={m.id}>
-                        <td>{index + 1}</td>
+                        <td>{(page - 1) * rowsPerPage + index + 1}</td>
                         <td>{m.member_name}</td>
                         <td>{m.plan_type}</td>
                         <td>{new Date(m.start_date).toLocaleDateString()}</td>
@@ -89,24 +89,28 @@ const Memberships = () => {
                 </table>
             </div>
 
-            <div className="pagination">
-                <button
+            {totalPages > 1 && (
+                <div className="pagination">
+                  <button
                     disabled={page === 1}
                     onClick={() => setPage(page - 1)}
                 >
                     Prev
-                </button>
+                  </button>
 
-                <span>Page {page} of {totalPages}</span>
+                  <span>Page {page} of {totalPages}</span>
 
-                <button
+                  <button
                     disabled={page === totalPages}
                     onClick={() => setPage(page + 1)}
-                >
+                  >
                     Next
-                </button>
-                </div>
-            </div>
+                  </button>
+                </div>   
+            )}
+
+
+        </div>
     );
 };
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import "./dashboard.css"
+import { Link } from "react-router-dom";
 
 // interface RecentPayment {
 //   id: number;
@@ -58,15 +59,19 @@ const Dashboard = () => {
 
       {/* Summary Cards */}
       <div className="cards">
-        <div className="card">
-          <h3>Total Members</h3>
-          <p>{data.totalMembers}</p>
-        </div>
+        <Link to="/members">
+          <div className="card" >
+            <h3>Total Members</h3>
+            <p>{data.totalMembers}</p>
+          </div>
+        </Link>
 
-        <div className="card">
-          <h3>Active Memberships</h3>
-          <p>{data.activeMemberships}</p>
-        </div>
+        <Link to="/memberships">
+          <div className="card">
+            <h3>Active Memberships</h3>
+            <p>{data.activeMemberships}</p>
+          </div>
+        </Link>
 
         <div className="card">
           <h3>Expired Memberships</h3>

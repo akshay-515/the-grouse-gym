@@ -8,6 +8,7 @@ import MemberList from "../pages/members/memberlist/memberlist";
 import EditMember from "../pages/members/updatemember/updatemember";
 import Memberships from "../pages/memberships/memberships";
 import Payments from "../pages/payments/payments";
+import ExpiringMembers from "../pages/expiring/expiring";
 
 const AppRoutes = () => {
     return(
@@ -23,7 +24,8 @@ const AppRoutes = () => {
                 <Route path="/members" element={<MemberList />} />
                 <Route path="/members/edit/:id" element={<EditMember />}/>
                 <Route path="/payments" element={<Payments />}/>
-                <Route path="memberships" element={<Memberships />}/>
+                <Route path="/memberships" element={<Memberships />}/>
+                <Route path="/expiring" element={<ExpiringMembers />}/>
               </Route>
             </Route>
             

@@ -56,9 +56,10 @@
 }
 
 .recent-table-wrapper{
-  max-height: 300px;       /* control height */
-  overflow-y: auto;        /* vertical scroll */
-  overflow-x: auto;        /* prevent horizontal stretch */
+  max-height: 300px;       
+  overflow-y: auto;       
+  overflow-x: auto;    
+  border: solid 1px #ededed;  
   border-radius: 8px;
 }
 

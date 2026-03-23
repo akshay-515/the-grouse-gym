@@ -178,6 +178,7 @@ const Payments = () => {
                         <option value="CASH">Cash</option>
                         <option value="UPI">UPI</option>
                         <option value="CARD">Card</option>
+                        <option value="GPAY">GPay</option>
                     </select>
                     </div>
 

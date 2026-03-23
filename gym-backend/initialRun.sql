@@ -74,3 +74,18 @@ DROP CONSTRAINT memberships_plan_type_check;
 ALTER TABLE memberships
 ADD CONSTRAINT memberships_plan_type_check
 CHECK (plan_type IN ('MONTHLY','QUARTERLY','HALF_YEARLY','YEARLY'));
+
+-- final modifiaction for table altering
+ALTER TABLE payments 
+DROP CONSTRAINT payments_payment_mode_check;
+
+ALTER TABLE payments 
+ADD CONSTRAINT payments_payment_mode_check 
+CHECK (payment_mode IN ('CASH', 'GPAY', 'UPI', 'CARD'));
+
+
+ALTER TABLE memberships DROP CONSTRAINT memberships_plan_type_check;
+
+ALTER TABLE memberships
+ADD CONSTRAINT memberships_plan_type_check
+CHECK (plan_type IN ('MONTHLY', 'QUARTERLY', 'HALF_YEARLY', 'YEARLY'));
