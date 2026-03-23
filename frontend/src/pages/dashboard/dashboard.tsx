@@ -3,14 +3,6 @@ import api from "../../api/axios";
 import "./dashboard.css"
 import { Link } from "react-router-dom";
 
-// interface RecentPayment {
-//   id: number;
-//   member_name: string;
-//   amount: number;
-//   payment_date: string;
-//   payment_mode: string;
-// }
-
 interface DashboardSummary {
   totalMembers: number;
   activeMemberships: number;
@@ -19,116 +11,132 @@ interface DashboardSummary {
   monthlyRevenue: number;
   expiringSoon: number;
   totalRevenue: number;
-  recentPayments: any;
+  recentPayments: any[];
 }
 
 const Dashboard = () => {
-    const [data, setData] = useState<DashboardSummary | null> (null);
+    const [data, setData] = useState<DashboardSummary | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string>("")
+    const [error, setError] = useState<string>("");
 
-    useEffect (() => {
+    useEffect(() => {
         const fetchData = async () => {
           try {
              const token = localStorage.getItem("token");
-
              if(!token) {
-              setError("unauthorized. Please login again.");
+              setError("Unauthorized. Please login again.");
               setLoading(false);
               return;
              }
-
             const response = await api.get("/dashboard");
-            setData(response.data.data)
-            console.log(response.data.data)
+            setData(response.data.data);
           } catch (err: any) {
-            console.error("Dashboard fetch error:", err);
             setError("Failed to load dashboard data.");
-          }finally {
+          } finally {
             setLoading(false);
-          }}
-          fetchData();
+          }
+        };
+        fetchData();
     }, []);
-    if(loading) return <p>Loading Dashboard...</p>;
-    if(error) return <p className="error-text">{error}</p>
-    if(!data) return <p>Loading...</p>
 
-    return(
-      <div className="dashboard-container">
-        <h2>Dashboard Overview</h2>
+    if(loading) return <div className="loading-state">Loading Dashboard...</div>;
+    if(error) return <div className="error-container"><p className="error-text">{error}</p></div>;
+    if(!data) return null;
 
-      {/* Summary Cards */}
-      <div className="cards">
-        <Link to="/members">
-          <div className="card" >
-            <h3>Total Members</h3>
-            <p>{data.totalMembers}</p>
-          </div>
+    return (
+      <div className="dashboard-wrapper">
+        <header className="dashboard-header">
+            <h2>Dashboard Overview</h2>
+            <span className="date-display">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+        </header>
+
+      <div className="stats-grid">
+        <Link to="/members" className="stat-card">
+            <div className="stat-info">
+                <h3>Total Members</h3>
+                <p className="stat-value">{data.totalMembers}</p>
+                <span className="stat-subtext">{data.activeMemberships} Active</span>
+            </div>
+            <div className="stat-icon members-icon">👤</div>
         </Link>
 
-        <Link to="/memberships">
-          <div className="card">
-            <h3>Active Memberships</h3>
-            <p>{data.activeMemberships}</p>
-          </div>
-        </Link>
-
-        <div className="card">
-          <h3>Expired Memberships</h3>
-          <p>{data.expiredMemberships}</p>
+        <div className="stat-card">
+            <div className="stat-info">
+                <h3>Membership Status</h3>
+                <div className="status-mini-flex">
+                    <p className="stat-value">{data.activeMemberships}</p>
+                    <span className="status-tag active">Active</span>
+                </div>
+                <span className="stat-subtext text-red">{data.expiredMemberships} Expired</span>
+            </div>
+            <div className="progress-ring-placeholder">
+                <div className="percentage">90%</div>
+            </div>
         </div>
 
-        <div className="card warning-card">
-          <h3>Expiring Soon</h3>
-          <p>{data.expiringSoon}</p>
+        <div className="stat-card warning">
+            <div className="stat-info">
+                <h3>Expiring Soon</h3>
+                <p className="stat-value">{data.expiringSoon}</p>
+                <span className="stat-subtext">Within 7 days</span>
+            </div>
+            <div className="stat-icon clock-icon">🕒</div>
         </div>
 
-        <div className="card revenue-card">
-          <h3>Total Revenue</h3>
-          <p>₹{data.totalRevenue.toLocaleString()}</p>
-        </div>
-
-        <div className="card revenue-card">
-          <h3>Monthly Revenue</h3>
-          <p>₹{data.monthlyRevenue.toLocaleString()}</p>
+        <div className="stat-card revenue">
+            <div className="revenue-content">
+                <div className="rev-item">
+                    <h3>Total Revenue</h3>
+                    <p className="stat-value">₹{data.totalRevenue.toLocaleString()}</p>
+                </div>
+                <div className="rev-item">
+                    <h3>Monthly</h3>
+                    <p className="stat-value small">₹{data.monthlyRevenue.toLocaleString()}</p>
+                </div>
+            </div>
+            <div className="visual-trend">
+                <div className="sparkline"></div>
+                <span className="trend-label">↑ 12%</span>
+            </div>
         </div>
       </div>
 
-      {/* Recent Payments Section */}
       <div className="recent-section">
-        <h3>Recent Payments</h3>
+        <div className="section-header">
+            <h3>Recent Payments</h3>
+            <button className="view-all-btn">View All</button>
+        </div>
 
-        {data.recentPayments &&  data.recentPayments.length === 0 ? (
-          <p>No recent payments found.</p>
-        ) : (
-          <div className="recent-table-wrapper">
-            <table className="recent-table">
+        <div className="table-container">
+            <table className="modern-table">
               <thead>
                 <tr>
                   <th>Member</th>
                   <th>Amount</th>
                   <th>Mode</th>
                   <th>Date</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
-                {data.recentPayments.map((payment:any) => (
+                {data.recentPayments.map((payment: any) => (
                   <tr key={payment.id}>
-                    <td>{payment.member_name}</td>
-                    <td>₹{payment.amount.toLocaleString()}</td>
-                    <td>{payment.payment_mode}</td>
-                    <td>
-                      {new Date(payment.payment_date).toLocaleDateString()}
+                    <td className="member-cell">
+                        <div className="avatar-alt">{payment.member_name.charAt(0)}</div>
+                        {payment.member_name}
                     </td>
+                    <td className="amount-cell">₹{payment.amount.toLocaleString()}</td>
+                    <td><span className="mode-badge">{payment.payment_mode}</span></td>
+                    <td>{new Date(payment.payment_date).toLocaleDateString()}</td>
+                    <td><span className="status-dot"></span> Paid</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>   
-        )}
+        </div>
       </div>
     </div>
     ); 
-} 
+}
 
 export default Dashboard;
