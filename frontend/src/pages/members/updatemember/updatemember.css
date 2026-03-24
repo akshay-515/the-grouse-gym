@@ -1,107 +1,125 @@
-.update-member-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 24px;
+/* Ensure variables are defined or shared from your global/dashboard CSS */
+:root {
+  --bg-darker: #0f0f15;
+  --glass-bg: #1c1c24;
+  --text-white: #ffffff;
+  --text-dim: #8a8aa0;
+  --accent-orange: #ff9100;
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --input-bg: #252530;
 }
 
-.update-member-header h2 {
-  margin: 0;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: rgb(111, 111, 111);
+.admin-page-wrapper {
+  background-color: var(--bg-darker);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: var(--text-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.sub-text {
-  font-size: 0.9rem;
-  color: #6b7280;
-  margin-top: 4px;
-  margin-bottom: 20px;
+.page-header {
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-.update-form-card {
-  background: white;
+.header-icon-box {
+  background: rgba(255, 145, 0, 0.1);
+  padding: 12px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  padding: 20px;
 }
 
-.update-member-form {
+.glass-form-card {
+  width: 100%;
+  max-width: 650px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.elite-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-}
-
-.update-form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.update-form-group label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #374151;
-}
-
-.update-form-row {
-  display: flex;
   gap: 24px;
 }
 
-.update-form-row .update-form-group {
-  flex: 1;
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.update-member-form input,
-.update-member-form select {
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  background-color: #f9fafb;   /* FIX */
-  color: #111827;
+.input-container label {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.flex-1 { flex: 1; }
+
+.elite-form input, 
+.elite-form select {
+  background: var(--input-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: white;
+  font-size: 1rem;
   transition: all 0.2s ease;
 }
 
-.update-member-form input::placeholder {
-  color: #9ca3af;
-}
-
-.update-member-form input:focus,
-.update-member-form select:focus {
-  background-color: #ffffff;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+.elite-form input:focus, 
+.elite-form select:focus {
   outline: none;
+  border-color: var(--accent-orange);
+  background: #2a2a38;
+  box-shadow: 0 0 0 4px rgba(255, 145, 0, 0.15);
 }
 
-.submit-btn {
+.elite-submit-btn {
   margin-top: 10px;
-  padding: 12px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: var(--accent-orange);
   color: white;
   border: none;
-  border-radius: 8px;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: all 0.3s ease;
 }
 
-.submit-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+.update-accent {
+  background: linear-gradient(135deg, #ff9100, #e65100);
 }
 
-.update-btn {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+.elite-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 145, 0, 0.3);
+  filter: brightness(1.1);
 }
 
-.update-btn:hover {
-  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
-}
-
-.update-member-form input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.4) sepia(1) saturate(5) hue-rotate(190deg);
+.elite-date-picker::-webkit-calendar-picker-indicator {
+  filter: invert(1);
   cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .form-row { flex-direction: column; }
+  .glass-form-card { padding: 25px; }
 }

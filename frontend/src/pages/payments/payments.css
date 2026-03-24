@@ -1,99 +1,125 @@
-.payments-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 24px;
+:root {
+  --bg-darker: #0f0f15;
+  --glass-bg: #1c1c24;
+  --text-white: #ffffff;
+  --text-dim: #8a8aa0;
+  --accent-green: #00e676;
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --input-bg: #252530;
 }
 
-.payment-header h2 {
-  margin: 0;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: rgb(111, 111, 111);
+.admin-page-wrapper {
+  background-color: var(--bg-darker);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: var(--text-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.sub-text {
-  font-size: 0.9rem;
-  color: #6b7280;
-  margin-top: 4px;
-  margin-bottom: 20px;
+.page-header {
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-.form-card {
-  background: #ffffff;
+.payment-icon {
+  background: rgba(0, 230, 118, 0.1);
+  padding: 12px;
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  padding: 20px;
 }
 
-.payment-form {
+.glass-form-card {
+  width: 100%;
+  max-width: 650px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.elite-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
-.form-group {
+.input-container {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
-.form-group label {
+.input-container label {
   font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #4b5563; 
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
 }
 
 .form-row {
   display: flex;
-  gap: 12px;
+  gap: 20px;
 }
 
-.form-row .form-group {
-  flex: 1;
-}
+.flex-1 { flex: 1; }
 
-.payment-form input,
-.payment-form select {
-  padding: 11px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  background-color: #f9fafb; 
-  color: #111827;
+.elite-form input, 
+.elite-form select {
+  background: var(--input-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: white;
+  font-size: 1rem;
   transition: all 0.2s ease;
 }
 
-.payment-form input::placeholder {
-  color: #9ca3af;
-}
-
-.payment-form input:focus,
-.payment-form select:focus {
-  background-color: #ffffff;
-  border-color: #10b981; 
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+/* Specific styling for the green glow on focus */
+.elite-form input:focus, 
+.elite-form select:focus {
   outline: none;
+  border-color: var(--accent-green);
+  background: #2a2a38;
+  box-shadow: 0 0 0 4px rgba(0, 230, 118, 0.15);
 }
 
-.payment-form input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0.4);
-  cursor: pointer;
-}
-
-.submit-btn {
+.payment-accent {
+  background: linear-gradient(135deg, #00e676, #00c853);
   margin-top: 10px;
-  padding: 12px;
-  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-.submit-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 14px rgba(16, 185, 129, 0.3);
+.payment-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 230, 118, 0.3);
+  filter: brightness(1.1);
+}
+
+.elite-date-picker::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+/* Styling for Select dropdown options in some browsers */
+select option {
+  background: var(--glass-bg);
+  color: white;
 }

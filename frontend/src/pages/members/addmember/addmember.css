@@ -1,104 +1,133 @@
-.add-member-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 24px;
+:root {
+  --bg-darker: #0f0f15;
+  --glass-bg: #1c1c24;
+  --text-white: #ffffff;
+  --text-dim: #8a8aa0;
+  --accent-blue: #3d5afe;
+  --border-glass: rgba(255, 255, 255, 0.05);
+  --input-bg: #252530;
 }
 
-.add-member-header h2 {
-  margin: 0;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: rgb(111, 111, 111);
-}
-
-.sub-text {
-  font-size: 0.9rem;
-  color: #6b7280;
-  margin-top: 4px;
-  margin-bottom: 20px;
-}
-
-.add-form-card {
-  background: white;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  padding: 20px;
-}
-
-.add-member-form {
+.admin-page-wrapper {
+  background-color: var(--bg-darker);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: var(--text-white);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
 }
 
-.add-form-group {
+.page-header {
+  width: 100%;
+  max-width: 650px;
   display: flex;
-  flex-direction: column;
-  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
-.add-form-group label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #374151;
-}
+.page-header h1 { font-size: 1.8rem; margin: 0; font-weight: 700; }
+.subtitle { color: var(--text-dim); margin-top: 5px; }
 
-.add-form-row {
-  display: flex;
-  gap: 17px;
-}
-
-.add-form-row .add-form-group {
-  flex: 1;
-}
-
-.add-member-form input,
-.add-member-form select {
-  width: 94%;
-  padding: 10px 12px;
-  background-color: #f9fafb;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: #111827;
-  transition: 0.2s ease;
-}
-
-.add-member-form input::placeholder {
-  color: #9ca3af;
-}
-
-.add-member-form input:focus,
-.add-member-form select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-  outline: none;
-}
-
-.submit-btn {
-  margin-top: 10px;
+.header-icon-box {
+  background: rgba(61, 90, 254, 0.1);
   padding: 12px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-radius: 12px;
+}
+
+.glass-form-card {
+  width: 100%;
+  max-width: 650px;
+  background: var(--glass-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.elite-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-container label {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.flex-1 { flex: 1; }
+
+.elite-form input, 
+.elite-form select {
+  background: var(--input-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.elite-form input:focus, 
+.elite-form select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  background: #2a2a38;
+  box-shadow: 0 0 0 4px rgba(61, 90, 254, 0.15);
+}
+
+.elite-submit-btn {
+  margin-top: 10px;
+  background: var(--accent-blue);
   color: white;
   border: none;
-  border-radius: 8px;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
 }
 
-.submit-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+.elite-submit-btn:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(61, 90, 254, 0.3);
 }
 
-.calendar-icon {
-  position: absolute;
-  right: 12px;
-  font-size: 22px;
-  top: 68%;
-  transform: translateY(-50%);
-  pointer-events: none;
+.elite-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Customizing the date picker calendar icon for dark mode */
+.elite-date-picker::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .form-row { flex-direction: column; }
+  .glass-form-card { padding: 25px; }
 }

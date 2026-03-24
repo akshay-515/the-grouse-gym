@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { createMember } from "../../../api/member.api";
+import { UserPlus, Phone, Calendar, User, Hash } from "lucide-react";
 import "./addmember.css"
 
 const AddMember = () => {
@@ -45,87 +46,105 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
 }; 
 
 return (
-    <div className="add-member-container">
-      <div className="add-member-header">
-        <h2>Add New Member</h2>
-        <p className="sub-text">Enter member details to register</p>
+  <div className="admin-page-wrapper">
+    <div className="page-header">
+      <div className="header-text">
+        <h1>Add New Member</h1>
+        <p className="subtitle">Enter member details to register them in the system</p>
       </div>
+      <div className="header-icon-box">
+        <UserPlus size={24} color="var(--accent-blue)" />
+      </div>
+    </div>
 
-      <div className="add-form-card">
-        <form className="add-member-form" onSubmit={handleSubmit}>
-
-          <div className="add-form-group">
-            <label>Name</label>
+    <div className="glass-form-card">
+      <form className="elite-form" onSubmit={handleSubmit}>
+        
+        {/* Name Field */}
+        <div className="form-section">
+          <div className="input-container">
+            <label><User size={14} /> Full Name</label>
             <input 
               name="name"
-              placeholder="Enter member name"
+              placeholder="e.g. John Doe"
               value={form.name}
               onChange={handleChange}
               required
             />
           </div>
 
-          <div className="add-form-group">
-            <label>Phone</label>
+          {/* Phone Field */}
+          <div className="input-container">
+            <label><Phone size={14} /> Phone Number</label>
             <input 
               name="phone"
-              placeholder="Enter phone number"
+              placeholder="+91 00000 00000"
               value={form.phone}
               onChange={handleChange}
               required
             />
           </div>
+        </div>
 
-          <div className="add-form-row">
-            <div className="add-form-group">
-              <label>Age</label>
-              <input 
-                name="age"
-                type="number"
-                placeholder="Age"
-                value={form.age}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="add-form-group">
-              <label>Gender</label>
-              <select 
-                name="gender" 
-                value={form.gender}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
+        {/* Row for Age and Gender */}
+        <div className="form-row">
+          <div className="input-container flex-1">
+            <label><Hash size={14} /> Age</label>
+            <input 
+              name="age"
+              type="number"
+              placeholder="25"
+              value={form.age}
+              onChange={handleChange}
+              required
+            />
           </div>
 
-          <div className="add-form-group">
-            <label>Joining Date</label>
+          <div className="input-container flex-1">
+            <label>Gender</label>
+            <select 
+              name="gender" 
+              value={form.gender}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Joining Date */}
+        <div className="input-container">
+          <label><Calendar size={14} /> Joining Date</label>
+          <div className="date-input-wrapper">
             <input 
-              className="add-member-date"
+              className="elite-date-picker"
               name="joined_date"
               type="date"
               value={form.joined_date}
               onChange={handleChange}
               required
             />
-            <span className="calendar-icon">📅</span>
           </div>
+        </div>
 
-          <button type="submit" className="submit-btn">
-            {loading ? "Adding..." : "Add Member"}
+        <div className="form-actions">
+          <button type="submit" className="elite-submit-btn" disabled={loading}>
+            {loading ? (
+              <span className="loader-text">Processing...</span>
+            ) : (
+              <>Register Member <UserPlus size={18} /></>
+            )}
           </button>
+        </div>
 
-        </form>
-      </div>
-
+      </form>
     </div>
-    );
+  </div>
+);
 };
 
 export default AddMember;
