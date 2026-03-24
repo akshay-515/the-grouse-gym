@@ -10,7 +10,7 @@ const TopNavbar = () => {
 
     return (
         <div className="topnavbar">
-            <h3 className="navbar-heading">Welcome Admin</h3>
+            <h3 className="navbar-heading">Dashboard Overview</h3>
             <button onClick={handleLogout}>Logout</button>
         </div>
     );

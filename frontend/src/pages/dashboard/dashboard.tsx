@@ -46,8 +46,7 @@ const Dashboard = () => {
     return (
       <div className="dashboard-wrapper">
         <header className="dashboard-header">
-            <h2>Dashboard Overview</h2>
-            <span className="date-display">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+            <span className="date-display">{new Date().toLocaleDateString('en-US', {day: 'numeric', month: 'long', year: 'numeric' })}</span>
         </header>
 
       <div className="stats-grid">
