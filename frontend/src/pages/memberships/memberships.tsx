@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import api from "../../api/axios";
-import { ChevronLeft, ChevronRight, ShieldCheck, Calendar, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, ShieldCheck, User } from "lucide-react";
 import "./memberships.css"
 
 interface Membership {

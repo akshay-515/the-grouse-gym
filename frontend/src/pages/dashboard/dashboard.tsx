@@ -45,9 +45,7 @@ const Dashboard = () => {
 
     return (
       <div className="dashboard-wrapper">
-        <header className="dashboard-header">
-            <span className="date-display">{new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
-        </header>
+
 
       <div className="stats-grid">
         <Link to="/members" className="stat-card">
@@ -60,7 +58,7 @@ const Dashboard = () => {
         </Link>
 
         <div className="stat-card">
-            <div className="stat-info">
+            <div className="membership-stat-info">
                 <h3>Membership Status</h3>
                 <div className="status-mini-flex">
                     <p className="stat-value">{data.activeMemberships}</p>

@@ -10,9 +10,18 @@ const TopNavbar = () => {
 
     return (
         <div className="topnavbar">
-            <h3 className="navbar-heading">Dashboard Overview</h3>
-            <button onClick={handleLogout}>Logout</button>
+            <div className="topnavbar-a">
+              <h3 className="navbar-heading">Dashboard Overview</h3>
+            </div>
+            <div className="topnavbar-b">
+              <header className="dashboard-header">
+                <span className="date-display">{new Date().toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              </header>
+              <button onClick={handleLogout}>Logout</button> 
+            </div>   
         </div>
+        
+
     );
 };
 

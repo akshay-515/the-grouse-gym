@@ -10,7 +10,7 @@
 
 .admin-page-wrapper {
   background-color: var(--bg-darker);
-  min-height: 100vh;
+  min-height: 91%;
   padding: 40px 20px;
   color: var(--text-white);
   display: flex;

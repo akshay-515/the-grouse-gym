@@ -12,7 +12,7 @@
 .dashboard-wrapper {
   padding: 24px;
   background-color: var(--bg-dark);
-  min-height: 100vh;
+  min-height: 100%;
   color: var(--text-main);
   font-family: 'Inter', sans-serif;
 }
@@ -58,10 +58,19 @@
 
 .stat-info h3 {
   font-size: 0.85rem;
-  color: var(--text-dim);
+  color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
+}
+
+.membership-stat-info{
+  font-size: 0.85rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  height: 11rem;
 }
 
 .stat-value {
