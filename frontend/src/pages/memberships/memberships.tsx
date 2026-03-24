@@ -50,10 +50,10 @@ const Memberships = () => {
 
 return (
     <div className="admin-page-wrapper">
-        <div className="page-header">
+        <div className="membership-page-header">
             <div className="header-text">
                 <h1>Memberships</h1>
-                <p className="subtitle">Track all active and expired membership cycles</p>
+                <p className="membership-subtitle">Track all active and expired membership cycles</p>
             </div>
             <div className="header-icon-box">
                 <ShieldCheck size={24} color="var(--accent-blue)" />

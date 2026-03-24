@@ -83,7 +83,7 @@ button:focus-visible {
 /* Sidebar: Dark & Professional */
 .sidebar {
   width: 240px; /* Slightly wider for better readability */
-  background-color: var(--bg-dark);
+  background-color: #16161e;
   color: #f9fafb;
   padding: 24px;
   display: flex;
@@ -153,14 +153,14 @@ button:focus-visible {
 
 .topnavbar{
   display: flex;
-  height: 3.5rem;
+  height: 5rem;
   justify-content: space-between;
   align-items: center;
 }
 
 .navbar-heading {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 p {
