@@ -1,77 +1,131 @@
-.membership-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  /* padding: 24px; */
-  box-sizing: border-box;
+:root {
+  --bg-darker: #0f0f15;
+  --glass-bg: #1c1c24;
+  --text-white: #ffffff;
+  --text-dim: #8a8aa0;
+  --accent-blue: #3d5afe;
+  --accent-green: #00e676;
+  --accent-red: #ff5252;
+  --border-glass: rgba(255, 255, 255, 0.05);
 }
 
-.membership-header {
-  margin-bottom: 20px;
+/* Page Layout */
+.admin-page-wrapper {
+  background-color: var(--bg-darker);
+  min-height: 100vh;
+  padding: 30px;
+  color: var(--text-white);
 }
 
-.membership-header h2 {
-  margin: 0;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: rgb(111, 111, 111);
+.glass-table-container {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.sub-text {
-  font-size: 0.9rem;
-  color: #6b7280;
-  margin-top: 4px;
-}
-
-.table-wrapper {
-  background: white;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  overflow-x: auto;
-}
-
-.membership-table {
+.elite-members-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 800px;
 }
 
-.membership-table th {
-  background: #f9fafb;
-  padding: 14px 18px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #6b7280;
-  border-bottom: 1px solid #e5e7eb;
+.elite-members-table th {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 16px 20px;
   text-align: left;
-}
-
-.membership-table td {
-  padding: 14px 18px;
-  font-size: 0.95rem;
-  border-bottom: 1px solid #f3f4f6;
-}
-
-.membership-table tr:hover {
-  background: #f9fafb;
-}
-
-.status-badge {
-  padding: 4px 10px;
-  border-radius: 999px;
   font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.elite-members-table td {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-glass);
+  font-size: 0.9rem;
+}
+
+.member-name-cell {
   font-weight: 600;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.status-badge.active {
-  background: #dcfce7;
-  color: #166534;
+.plan-tag {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--text-dim);
 }
 
-.status-badge.expired {
-  background: #fee2e2;
-  color: #991b1b;
+.text-red {
+  color: var(--accent-red);
+  font-weight: 600;
 }
+
+/* Glowing Status Badges */
+.elite-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.elite-status-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.elite-status-badge.active {
+  background: rgba(0, 230, 118, 0.1);
+  color: var(--accent-green);
+  border: 1px solid rgba(0, 230, 118, 0.2);
+}
+
+.elite-status-badge.active .dot {
+  background: var(--accent-green);
+  box-shadow: 0 0 8px var(--accent-green);
+}
+
+.elite-status-badge.expired {
+  background: rgba(255, 82, 82, 0.1);
+  color: var(--accent-red);
+  border: 1px solid rgba(255, 82, 82, 0.2);
+}
+
+.elite-status-badge.expired .dot {
+  background: var(--accent-red);
+}
+
+/* Reusing Pagination from previous pages */
+.elite-pagination {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.pag-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-glass);
+  color: white;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.pag-btn:disabled { opacity: 0.3; }
+
+.pag-info span { color: var(--accent-blue); font-weight: 700; }

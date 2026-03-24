@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./payments.css"
 import api from "../../api/axios";
-import { data } from "react-router-dom";
-
+import { User, CreditCard, DollarSign, Calendar, CheckCircle } from "lucide-react";
 interface Member {
     id: number;
     name: string;
@@ -112,97 +111,108 @@ const Payments = () => {
         }
     };
 
-    return(
-        <div className="payments-container">
-            <div className="payment-header">
-                <h2>Record Payment</h2>
-                <p className="sub-text">Create payment and activate membership</p>
+
+return (
+    <div className="admin-page-wrapper">
+        <div className="page-header">
+            <div className="header-text">
+                <h1>Record Payment</h1>
+                <p className="subtitle">Create payment and activate membership</p>
             </div>
+            <div className="header-icon-box payment-icon">
+                <CreditCard size={24} color="var(--accent-green)" />
+            </div>
+        </div>
 
-            <div className="form-card">
-                <form onSubmit={handleSubmit} className="payment-form">
+        <div className="glass-form-card">
+            <form onSubmit={handleSubmit} className="elite-form">
 
-                <div className="form-group">
-                    <label>Member</label>
+                {/* Member Selection */}
+                <div className="input-container">
+                    <label><User size={14} /> Select Member</label>
                     <select 
-                    name="member_id"
-                    value={form.member_id}
-                    onChange={handleChange}
-                    required
-                    >
-                    <option value="" hidden>Select Member</option>
-                    {members.map((m) => (
-                        <option key={m.id} value={m.id}>{m.name}</option>
-                    ))}
-                    </select>
-                </div>
-
-                <div className="form-row">
-                    <div className="form-group">
-                    <label>Plan Type</label>
-                    <select 
-                        name="plan_type" 
-                        value={form.plan_type}
+                        name="member_id"
+                        value={form.member_id}
                         onChange={handleChange}
                         required
                     >
-                        <option value="MONTHLY">Monthly</option>
-                        <option value="QUARTERLY">Quarterly</option>
-                        <option value="HALF_YEARLY">Half Yearly</option>
-                        <option value="YEARLY">Yearly</option>
+                        <option value="" hidden>Choose a member...</option>
+                        {members.map((m) => (
+                            <option key={m.id} value={m.id}>{m.name}</option>
+                        ))}
                     </select>
-                    </div>
-
-                    <div className="form-group">
-                    <label>Amount</label>
-                    <input 
-                        type="number"
-                        name="amount"
-                        value={form.amount}
-                        placeholder="Enter amount"
-                        onChange={handleChange}
-                        required
-                    />
-                    </div>
                 </div>
 
+                {/* Plan & Amount Row */}
                 <div className="form-row">
-                    <div className="form-group">
-                    <label>Payment Mode</label>
-                    <select 
-                        name="payment_mode" 
-                        value={form.payment_mode} 
-                        onChange={handleChange} 
-                        required
-                    >
-                        <option value="CASH">Cash</option>
-                        <option value="UPI">UPI</option>
-                        <option value="CARD">Card</option>
-                        <option value="GPAY">GPay</option>
-                    </select>
+                    <div className="input-container flex-1">
+                        <label>Plan Type</label>
+                        <select 
+                            name="plan_type" 
+                            value={form.plan_type}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="MONTHLY">Monthly</option>
+                            <option value="QUARTERLY">Quarterly</option>
+                            <option value="HALF_YEARLY">Half Yearly</option>
+                            <option value="YEARLY">Yearly</option>
+                        </select>
                     </div>
 
-                    <div className="form-group">
-                    <label>Payment Date</label>
-                    <input 
-                        type="date" 
-                        name="payment_date" 
-                        value={form.payment_date} 
-                        onChange={handleChange} 
-                        required 
-                    />
+                    <div className="input-container flex-1">
+                        <label><DollarSign size={14} /> Amount</label>
+                        <input 
+                            type="number"
+                            name="amount"
+                            value={form.amount}
+                            placeholder="0.00"
+                            onChange={handleChange}
+                            required
+                        />
                     </div>
                 </div>
 
-                <button type="submit" className="submit-btn">
-                    Record Payment
-                </button>
+                {/* Mode & Date Row */}
+                <div className="form-row">
+                    <div className="input-container flex-1">
+                        <label>Payment Mode</label>
+                        <select 
+                            name="payment_mode" 
+                            value={form.payment_mode} 
+                            onChange={handleChange} 
+                            required
+                        >
+                            <option value="CASH">Cash</option>
+                            <option value="UPI">UPI</option>
+                            <option value="CARD">Card</option>
+                            <option value="GPAY">GPay</option>
+                        </select>
+                    </div>
 
-                </form>
-            </div>
+                    <div className="input-container flex-1">
+                        <label><Calendar size={14} /> Payment Date</label>
+                        <input 
+                            className="elite-date-picker"
+                            type="date" 
+                            name="payment_date" 
+                            value={form.payment_date} 
+                            onChange={handleChange} 
+                            required 
+                        />
+                    </div>
+                </div>
 
-            </div>
-    );
+                <div className="form-actions">
+                    <button type="submit" className="elite-submit-btn payment-accent">
+                        Record Payment <CheckCircle size={18} style={{marginLeft: '8px'}}/>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+);
 };
 
 export default Payments;

@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom"
 import "./updatemember.css"
 import { useEffect, useState } from "react";
+import { User, Phone, Hash, Calendar, RefreshCw } from "lucide-react";
 import api from "../../../api/axios";
 
 const EditMember = () => {
@@ -67,78 +68,91 @@ const EditMember = () => {
         });
     }
 
-    return(
-        <div className="update-member-container">
-            <div className="update-member-header">
-                <h2>Update Member</h2>
-                <p className="sub-text">Modify member details</p>
+return (
+    <div className="admin-page-wrapper">
+        <div className="page-header">
+            <div className="header-text">
+                <h1>Update Member</h1>
+                <p className="subtitle">Modify member details for ID: {id}</p>
             </div>
-
-            <div className="update-form-card">
-                <form onSubmit={handleSubmit} className="update-member-form">
-
-                <div className="update-form-group">
-                    <label>Name</label>
-                    <input 
-                    name="name"
-                    placeholder="Enter member name"
-                    value={form.name}
-                    onChange={handleChange} 
-                    />
-                </div>
-
-                <div className="update-form-group">
-                    <label>Phone</label>
-                    <input 
-                    name="phone"
-                    placeholder="Enter phone number"
-                    value={form.phone}
-                    onChange={handleChange}
-                    />
-                </div>
-
-                <div className="update-form-row">
-                    <div className="form-group">
-                    <label>Age</label>
-                    <input
-                        name="age"
-                        type="number"
-                        placeholder="Age"
-                        value={form.age}
-                        onChange={handleChange}  
-                    />
-                    </div>
-
-                    <div className="update-form-group">
-                    <label>Gender</label>
-                    <select 
-                        name="gender"
-                        value={form.gender}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>  
-                    </select>
-                    </div>
-                </div>
-
-                <div className="update-form-group">
-                    <label>Joining Date</label>
-                    <input 
-                    name="joined_date" 
-                    type="date"
-                    value={form.joined_date}
-                    onChange={handleChange} 
-                    />
-                </div>
-                <button type="submit" className="submit-btn update-btn">
-                    {loading ? "Updating..." : "Update Member"}
-                </button>
-                </form>
+            <div className="header-icon-box">
+                <RefreshCw size={24} color="var(--accent-orange)" />
             </div>
         </div>
-    )
+
+        <div className="glass-form-card">
+            <form onSubmit={handleSubmit} className="elite-form">
+                
+                {/* Name */}
+                <div className="input-container">
+                    <label><User size={14} /> Full Name</label>
+                    <input 
+                        name="name"
+                        placeholder="Enter member name"
+                        value={form.name}
+                        onChange={handleChange} 
+                    />
+                </div>
+
+                {/* Phone */}
+                <div className="input-container">
+                    <label><Phone size={14} /> Phone Number</label>
+                    <input 
+                        name="phone"
+                        placeholder="Enter phone number"
+                        value={form.phone}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                {/* Age & Gender Row */}
+                <div className="form-row">
+                    <div className="input-container flex-1">
+                        <label><Hash size={14} /> Age</label>
+                        <input
+                            name="age"
+                            type="number"
+                            placeholder="Age"
+                            value={form.age}
+                            onChange={handleChange}  
+                        />
+                    </div>
+
+                    <div className="input-container flex-1">
+                        <label>Gender</label>
+                        <select 
+                            name="gender"
+                            value={form.gender}
+                            onChange={handleChange}
+                        >
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>  
+                        </select>
+                    </div>
+                </div>
+
+                {/* Date */}
+                <div className="input-container">
+                    <label><Calendar size={14} /> Joining Date</label>
+                    <input 
+                        className="elite-date-picker"
+                        name="joined_date" 
+                        type="date"
+                        value={form.joined_date}
+                        onChange={handleChange} 
+                    />
+                </div>
+
+                <div className="form-actions">
+                    <button type="submit" className="elite-submit-btn update-accent" disabled={loading}>
+                        {loading ? "Updating..." : "Save Changes"}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+);
 }
 
 export default EditMember;
