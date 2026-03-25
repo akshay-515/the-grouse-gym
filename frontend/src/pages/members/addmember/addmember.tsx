@@ -17,10 +17,28 @@ const [loading , setLoading] = useState(false);
 const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const {name, value} = e.target;
 
-    setForm({
+    if(name === "phone") {
+      const numericValue = value.replace(/\D/g, "");
+      const truncateValue = numericValue.slice(0,10);
+
+      setForm({
         ...form,
-        [name]: value
-    });
+        [name]: truncateValue
+      });
+    } else if (name === "age") {
+      const numericAge = value.slice(0,2);
+        if(parseInt(numericAge) > 0) {
+          setForm({
+          ...form,
+          [name]: numericAge
+        })
+      }    
+    } else {
+        setForm({
+          ...form,
+          [name]: value,
+      });
+    }
 };
 
 const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -59,26 +77,24 @@ return (
 
     <div className="glass-form-card">
       <form className="elite-form" onSubmit={handleSubmit}>
-        
-        {/* Name Field */}
-        <div className="form-section">
+        <div className="add-member-form-section">
           <div className="input-container">
             <label><User size={14} /> Full Name</label>
             <input 
               name="name"
-              placeholder="e.g. John Doe"
+              placeholder="Enter Name..."
               value={form.name}
               onChange={handleChange}
               required
             />
           </div>
 
-          {/* Phone Field */}
           <div className="input-container">
             <label><Phone size={14} /> Phone Number</label>
             <input 
+              type="number"
               name="phone"
-              placeholder="+91 00000 00000"
+              placeholder="Enter Phone..."
               value={form.phone}
               onChange={handleChange}
               required
@@ -86,14 +102,13 @@ return (
           </div>
         </div>
 
-        {/* Row for Age and Gender */}
         <div className="form-row">
           <div className="input-container flex-1">
             <label><Hash size={14} /> Age</label>
             <input 
               name="age"
               type="number"
-              placeholder="25"
+              placeholder="Enter Age..."
               value={form.age}
               onChange={handleChange}
               required
@@ -108,15 +123,13 @@ return (
               onChange={handleChange}
               required
             >
-              <option value="">Select</option>
+              <option value="" hidden>Select</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
-              <option value="other">Other</option>
             </select>
           </div>
         </div>
 
-        {/* Joining Date */}
         <div className="input-container">
           <label><Calendar size={14} /> Joining Date</label>
           <div className="date-input-wrapper">

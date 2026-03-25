@@ -46,14 +46,6 @@ const MemberList = () => {
     }
   };
 
-  // const editMember = async (id: number) => {
-  //   try{
-  //     await api.put(`/members/${id}`);
-  //   } catch (error) {
-  //     console.error("Unable to edit members", error);
-  //   }
-  // }
-
   const filteredMembers = members.filter((m) => 
     m.name.toLowerCase().includes(search.toLowerCase())
   );

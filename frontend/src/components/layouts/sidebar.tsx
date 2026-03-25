@@ -4,7 +4,6 @@ const Sidebar = () => {
     return(
         <div className="sidebar">
             <h2 className="logo">GYM ADMIN</h2>
-
             <nav>
                 <Link to="/dashboard">Dashboard</Link>
                 <Link to="/members/add">Add Members</Link>

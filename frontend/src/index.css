@@ -77,13 +77,12 @@ button:focus-visible {
   display: flex;
   height: 100vh;
   width: 100vw;
-  background-color: #f0f1f5; /* Light grey background for the whole app */
+  background-color: #f0f1f5; 
   overflow: hidden;
 }
 
-/* Sidebar: Dark & Professional */
 .sidebar {
-  width: 240px; /* Slightly wider for better readability */
+  width: 240px;
   background-color: #16161e;
   color: #f9fafb;
   padding: 24px;
@@ -96,7 +95,7 @@ button:focus-visible {
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 1px;
-  color: #3b82f6; /* Modern Blue Accent */
+  color: #3b82f6; 
   margin-bottom: 40px;
   border-bottom: 1px solid #374151;
   padding-bottom: 10px;

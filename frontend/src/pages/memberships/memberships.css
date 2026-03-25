@@ -9,12 +9,31 @@
   --border-glass: rgba(255, 255, 255, 0.05);
 }
 
-/* Page Layout */
 .admin-page-wrapper {
   background-color: var(--bg-darker);
   min-height: 100vh;
   padding: 30px;
   color: var(--text-white);
+}
+
+.membership-page-header {
+  width: 100%;
+  max-width: 80%;
+  display: flex;
+  font-size: 15px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-text h1 {
+  font-size: 2.2em;
+  margin: 0;
+}
+
+.membership-subtitle {
+  margin-top: -5px;
+  color: var(--text-dim);
 }
 
 .glass-table-container {
@@ -24,6 +43,7 @@
   width: 84%;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  padding-right: 12px;
 }
 
 .elite-members-table {
@@ -68,7 +88,6 @@
   font-weight: 600;
 }
 
-/* Glowing Status Badges */
 .elite-status-badge {
   display: inline-flex;
   align-items: center;
@@ -107,7 +126,38 @@
   background: var(--accent-red);
 }
 
-/* Reusing Pagination from previous pages */
+.elite-members-table tbody tr {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  cursor: default;
+}
+
+.elite-members-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  transform: translateX(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.elite-members-table tr:hover .elite-status-badge.active {
+  box-shadow: 0 0 15px rgba(0, 230, 118, 0.3);
+  background: rgba(0, 230, 118, 0.2);
+}
+
+.elite-members-table tr:hover .elite-status-badge.expired {
+  box-shadow: 0 0 15px rgba(255, 82, 82, 0.3);
+  background: rgba(255, 82, 82, 0.2);
+}
+
+.elite-members-table tr:hover .cell-icon {
+  color: var(--accent-blue);
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}
+
+.elite-members-table tr:hover .date-cell {
+  color: #fff;
+}
+
 .elite-pagination {
   margin-top: 25px;
   display: flex;
@@ -127,25 +177,11 @@
   align-items: center;
 }
 
-.pag-btn:disabled { opacity: 0.3; }
-
-.pag-info span { color: var(--accent-blue); font-weight: 700; }
-
-.membership-page-header{
-  width: 100%;
-  max-width: 80%;
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
+.pag-btn:disabled { 
+  opacity: 0.3; 
 }
 
-.membership-subtitle{
-  margin-top: -4%;
+.pag-info span { 
+  color: var(--accent-blue); 
+  font-weight: 700; 
 }
-
-.header-text h1 {
-  font-size: 2.2em;
-}
-

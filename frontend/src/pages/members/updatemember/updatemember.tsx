@@ -83,7 +83,6 @@ return (
         <div className="glass-form-card">
             <form onSubmit={handleSubmit} className="elite-form">
                 
-                {/* Name */}
                 <div className="input-container">
                     <label><User size={14} /> Full Name</label>
                     <input 
@@ -94,7 +93,6 @@ return (
                     />
                 </div>
 
-                {/* Phone */}
                 <div className="input-container">
                     <label><Phone size={14} /> Phone Number</label>
                     <input 
@@ -105,7 +103,6 @@ return (
                     />
                 </div>
 
-                {/* Age & Gender Row */}
                 <div className="form-row">
                     <div className="input-container flex-1">
                         <label><Hash size={14} /> Age</label>
@@ -132,7 +129,6 @@ return (
                     </div>
                 </div>
 
-                {/* Date */}
                 <div className="input-container">
                     <label><Calendar size={14} /> Joining Date</label>
                     <input 

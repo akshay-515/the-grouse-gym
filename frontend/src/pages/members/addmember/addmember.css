@@ -58,6 +58,12 @@
   gap: 8px;
 }
 
+.add-member-form-section{
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
 .input-container label {
   font-size: 0.85rem;
   color: var(--text-dim);
@@ -121,7 +127,6 @@
   cursor: not-allowed;
 }
 
-/* Customizing the date picker calendar icon for dark mode */
 .elite-date-picker::-webkit-calendar-picker-indicator {
   filter: invert(1);
   cursor: pointer;

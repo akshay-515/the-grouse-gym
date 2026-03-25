@@ -127,7 +127,6 @@ return (
         <div className="glass-form-card">
             <form onSubmit={handleSubmit} className="elite-form">
 
-                {/* Member Selection */}
                 <div className="input-container">
                     <label><User size={14} /> Select Member</label>
                     <select 
@@ -143,7 +142,6 @@ return (
                     </select>
                 </div>
 
-                {/* Plan & Amount Row */}
                 <div className="form-row">
                     <div className="input-container flex-1">
                         <label>Plan Type</label>
@@ -173,7 +171,6 @@ return (
                     </div>
                 </div>
 
-                {/* Mode & Date Row */}
                 <div className="form-row">
                     <div className="input-container flex-1">
                         <label>Payment Mode</label>
