@@ -62,10 +62,30 @@ const EditMember = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target
-        setForm({
+
+        if(name === "phone") {
+            const numericValue = value.replace(/\D/g, "");
+            const truncated = numericValue.slice(0,10);
+
+            setForm({
+                ...form,
+                [name]: truncated
+            })
+        } else if (name === "age") {
+            const numericAge = value.replace(/\D/g, "")
+            const truncatedAge = numericAge.slice(0,2);
+                if(truncatedAge === "" || Number(truncatedAge) >=0) {
+                setForm({
+                    ...form,
+                    [name]: truncatedAge
+                });
+          }
+        } else {
+            setForm({
             ...form,
             [name]: value
-        });
+        }); 
+        }
     }
 
 return (
@@ -96,6 +116,8 @@ return (
                 <div className="input-container">
                     <label><Phone size={14} /> Phone Number</label>
                     <input 
+                        type="text"
+                        inputMode="numeric"
                         name="phone"
                         placeholder="Enter phone number"
                         value={form.phone}
@@ -108,7 +130,8 @@ return (
                         <label><Hash size={14} /> Age</label>
                         <input
                             name="age"
-                            type="number"
+                            type="text"
+                            inputMode="numeric"
                             placeholder="Age"
                             value={form.age}
                             onChange={handleChange}  

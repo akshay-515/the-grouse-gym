@@ -26,11 +26,12 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
         [name]: truncateValue
       });
     } else if (name === "age") {
-      const numericAge = value.slice(0,2);
-        if(parseInt(numericAge) > 0) {
+      const numericAge = value.replace(/\D/g, "")
+      const truncateAge = numericAge.slice(0,2);
+        if(truncateAge === "" || Number(truncateAge) >=0) {
           setForm({
           ...form,
-          [name]: numericAge
+          [name]: truncateAge
         })
       }    
     } else {
@@ -92,7 +93,8 @@ return (
           <div className="input-container">
             <label><Phone size={14} /> Phone Number</label>
             <input 
-              type="number"
+              type="text"
+              inputMode="numeric"
               name="phone"
               placeholder="Enter Phone..."
               value={form.phone}
@@ -107,7 +109,8 @@ return (
             <label><Hash size={14} /> Age</label>
             <input 
               name="age"
-              type="number"
+              type="text"
+              inputMode="numeric"
               placeholder="Enter Age..."
               value={form.age}
               onChange={handleChange}

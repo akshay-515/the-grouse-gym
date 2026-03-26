@@ -110,7 +110,7 @@ const Dashboard = () => {
                 <tr>
                   <th>Member</th>
                   <th>Amount</th>
-                  <th>Mode</th>
+                  <th>Mode</th> 
                   <th>Date</th>
                   <th>Status</th>
                 </tr>

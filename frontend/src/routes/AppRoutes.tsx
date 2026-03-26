@@ -2,13 +2,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/login/login";
 import ProtectedRoutes from "./protectedroute";
 import Dashboard from "../pages/dashboard/dashboard";
-import AdminLayout from "../components/layouts/adminlayout";
+import AdminLayout from "../components/adminlayout";
 import AddMember from "../pages/members/addmember/addmember";
 import MemberList from "../pages/members/memberlist/memberlist";
 import EditMember from "../pages/members/updatemember/updatemember";
 import Memberships from "../pages/memberships/memberships";
 import Payments from "../pages/payments/payments";
 import ExpiringMembers from "../pages/expiring/expiring";
+import PaymentList from "../pages/paymentList/paymentList";
 
 const AppRoutes = () => {
     return(
@@ -26,6 +27,7 @@ const AppRoutes = () => {
                 <Route path="/payments" element={<Payments />}/>
                 <Route path="/memberships" element={<Memberships />}/>
                 <Route path="/expiring" element={<ExpiringMembers />}/>
+                <Route path="/payments-list" element={<PaymentList />} />
               </Route>
             </Route>
             

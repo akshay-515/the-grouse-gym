@@ -41,6 +41,13 @@ export const getDashboardStats = async () => {
        LIMIT 5`
     );
 
+    const paymentList = await client.query(
+      `SELECT p.id, m.name AS member_name, p.amount, p.payment_date, p.payment_mode
+       FROM payments p
+       JOIN members m ON p.member_id = m.id
+       ORDER BY p.payment_date DESC`
+    )
+
     return {
       totalMembers: Number(totalMembers.rows[0].count),
       activeMemberships: Number(activeMemberships.rows[0].count),
@@ -48,7 +55,8 @@ export const getDashboardStats = async () => {
       expiringSoon: Number(expiringSoon.rows[0].count),
       totalRevenue: Number(totalRevenue.rows[0].coalesce),
       monthlyRevenue: Number(monthlyRevenue.rows[0].coalesce),
-      recentPayments: recentPayments.rows
+      recentPayments: recentPayments.rows,
+      paymentList: Number(paymentList.rows)
     };
 
   } finally {
