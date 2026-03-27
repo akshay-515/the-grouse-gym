@@ -16,10 +16,11 @@ export default function Login() {
 
         try {
             const data = await loginUser(username, password);
+            console.log("data:", data)
             auth?.login(data.token);
             navigate("/dashboard");
         } catch (error) {
-            alert("Invalid credentials")
+            // alert("Invalid credentials")
         }
     };
 

@@ -3,6 +3,9 @@ import config from "../config";
 
 const pool = new Pool({
     connectionString:config.dataBaseUrl,
+    ssl: {
+        rejectUnauthorized: false
+    }
 })
 
 pool.on("connect", () => {
