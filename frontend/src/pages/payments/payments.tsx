@@ -16,7 +16,7 @@ const PLAN_PRICES: Record<string, number> = {
 
 const Payments = () => {
     const [members , setMembers] = useState<Member[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [_loading, setLoading] = useState(false);
     const [form, setForm] = useState({
         member_id: "",
         amount: PLAN_PRICES["MONTHLY"].toString(),
