@@ -45,13 +45,9 @@ const Dashboard = () => {
 
     return (
       <div className="dashboard-wrapper">
-<<<<<<< HEAD
-
-=======
         <header className="dashboard-header">
             <span className="date-display">{new Date().toLocaleDateString('en-US', {day: 'numeric', month: 'long', year: 'numeric' })}</span>
         </header>
->>>>>>> 56567a6be5db5335f3b22553e6364cb96378f6a8
 
       <div className="stats-grid">
         <Link to="/members" className="stat-card">
