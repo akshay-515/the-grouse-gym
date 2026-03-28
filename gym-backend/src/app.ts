@@ -11,8 +11,18 @@ dotenv.config();
 
 const app: Application = express();
 
+const allowedorigins = [
+  'http://localhost:5173', // Local development
+  'https://the-grouse-gym-git-dev-main-akshay-515s-projects.vercel.app', // Vercel URL
+  'https://the-grouse-gym.vercel.app' // Any other custom domain
+];
+
 //middleware
-app.use(cors());
+app.use(cors({
+    origin: allowedorigins,
+    credentials: true
+}));
+
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
