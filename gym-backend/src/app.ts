@@ -31,9 +31,4 @@ app.use("/api/payments", paymentRoutes)
 app.use("/api/dashboard", dashboardRoutes)
 app.use("/api/memberships", membershipsRoutes);
 
-//health check
-app.get("/health", (_req,res) => {
-    res.status(200).json({status: "OK", message: "GYM API is running"});
-});
-
 export default app;
