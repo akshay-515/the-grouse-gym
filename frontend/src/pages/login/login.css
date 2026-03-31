@@ -124,3 +124,24 @@
   box-shadow: 0 6px 25px rgba(249, 115, 22, 0.6);
   background: linear-gradient(135deg, #dc2626, #ea580c);
 }
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* space for button */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-size: 1rem;
+  font-weight: 600;
+}

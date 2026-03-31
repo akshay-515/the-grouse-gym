@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { createMember } from "../../../api/member.api";
 import { UserPlus, Phone, Calendar, User, Hash } from "lucide-react";
 import "./addmember.css"
+import toast from "react-hot-toast";
 
 const AddMember = () => {
     const [form, setForm] = useState({
@@ -48,7 +49,7 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     try {
         setLoading(true);
         await createMember(form);
-        alert("member created successfully");
+        toast.success("member created successfully");
         setForm({
           name: "",
           phone: "",
@@ -58,7 +59,7 @@ const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
         });
     } catch (error) {
         console.error(error);
-        alert("failed to create member");
+        toast.error("failed to create member");
     } finally {
         setLoading(false);
     };

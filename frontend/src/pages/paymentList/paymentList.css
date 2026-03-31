@@ -1,3 +1,28 @@
-.paymentlist-container h2 {
-  color: black;
+/* Reusing the variables from your theme */
+.amount-cell {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Ensure the wrapper matches the layout of the membership page */
+.admin-page-wrapper {
+    padding-bottom: 50px; /* Extra space for pagination */
+}
+
+/* Specific overrides if needed for the ID column */
+.index-col {
+    color: var(--accent-blue);
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+/* Make sure the header icon box looks consistent */
+.header-icon-box {
+    background: rgba(61, 90, 254, 0.1);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(61, 90, 254, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

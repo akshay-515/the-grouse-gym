@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Login from "../pages/login/login";
 import ProtectedRoutes from "./protectedroute";
 import Dashboard from "../pages/dashboard/dashboard";
@@ -14,6 +15,7 @@ import PaymentList from "../pages/paymentList/paymentList";
 const AppRoutes = () => {
     return(
         <BrowserRouter>
+          <Toaster position="top-center" />
           <Routes>
             <Route path="/" element = {<Login />}/>
             <Route path="/login" element={<Login />} />
@@ -32,7 +34,7 @@ const AppRoutes = () => {
             </Route>
             
           </Routes>    
-        </BrowserRouter>
+        </BrowserRouter> 
     )
 }
 

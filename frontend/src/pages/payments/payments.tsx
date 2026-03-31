@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./payments.css"
 import api from "../../api/axios";
 import { User, CreditCard, DollarSign, Calendar, CheckCircle } from "lucide-react";
+import toast from "react-hot-toast";
 interface Member {
     id: number;
     name: string;
@@ -96,7 +97,7 @@ const Payments = () => {
                 amount: amountNumber
             });
 
-            alert("Payment recorded successfully");
+            toast.success("payment recored Succesfully")
 
             await fetchMembers();
 
@@ -107,7 +108,7 @@ const Payments = () => {
             }));
 
         } catch (error) {
-            alert("Failed to record Payment");
+            toast.error("Failed to record Payment");
         }
     };
 
