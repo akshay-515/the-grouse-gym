@@ -81,10 +81,6 @@ const Payments = () => {
             return;
         }
 
-        console.log("member_id raw:", form.member_id);
-        console.log("member_id number:", Number(form.member_id));
-        console.log("i created", memberIdNumber)
-
         if(isNaN(amountNumber) || amountNumber <= 0) {
             alert("plesae enter a valid payment amount");
             return;
