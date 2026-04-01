@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authcontext";
 import { loginUser } from "../../api/auth.api";
+import toast from "react-hot-toast";
 import "./login.css"
 
 export default function Login() {
@@ -10,16 +12,20 @@ export default function Login() {
 
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [showPassword, setShowPassword] = useState<boolean>(false)
 
-    const handleLogin = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
             const data = await loginUser(username, password);
             console.log("data:", data)
             auth?.login(data.token);
+            toast.success("Logged in successfully");
             navigate("/dashboard");
         } catch (error) {
+            console.log("login error", error);
+            toast.error("Invalid credentials")
             // alert("Invalid credentials")
         }
     };
@@ -43,16 +49,27 @@ export default function Login() {
 
                 <div className="form-group">
                 <label>Password</label>
-                <input
-                    type="password"
-                    placeholder="Enter password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
+                
+                <div className="password-wrapper">
+                  <input
+                  type= {showPassword ? "text" : "password"}
+                  placeholder="Enter password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
+
+                <span
+                  className="toggle-password"
+                  onClick={() => {setShowPassword(!showPassword)}}
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </span>
+                </div>
+                
                 </div>
 
                 <button type="submit" className="login-btn">
-                Login
+                  Login
                 </button>
             </form>
             </div>

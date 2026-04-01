@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./payments.css"
 import api from "../../api/axios";
 import { User, CreditCard, DollarSign, Calendar, CheckCircle } from "lucide-react";
+import toast from "react-hot-toast";
 interface Member {
     id: number;
     name: string;
@@ -80,10 +81,6 @@ const Payments = () => {
             return;
         }
 
-        console.log("member_id raw:", form.member_id);
-        console.log("member_id number:", Number(form.member_id));
-        console.log("i created", memberIdNumber)
-
         if(isNaN(amountNumber) || amountNumber <= 0) {
             alert("plesae enter a valid payment amount");
             return;
@@ -96,7 +93,7 @@ const Payments = () => {
                 amount: amountNumber
             });
 
-            alert("Payment recorded successfully");
+            toast.success("payment recored Succesfully")
 
             await fetchMembers();
 
@@ -107,7 +104,7 @@ const Payments = () => {
             }));
 
         } catch (error) {
-            alert("Failed to record Payment");
+            toast.error("Failed to record Payment");
         }
     };
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import "./dashboard.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface DashboardSummary {
   totalMembers: number;
@@ -18,6 +18,8 @@ const Dashboard = () => {
     const [data, setData] = useState<DashboardSummary | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>("");
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -101,7 +103,7 @@ const Dashboard = () => {
       <div className="recent-section">
         <div className="section-header">
             <h3>Recent Payments</h3>
-            <button className="view-all-btn">View All</button>
+            <button className="view-all-btn" onClick={() => navigate("/payments-list")}>View All</button>
         </div>
 
         <div className="table-container">

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api/axios";
-import "./memberlist.css"
+import "./memberlist.css";
 import { Search, UserPlus, Edit3, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Popconfirm, message } from "antd";
+import toast from "react-hot-toast";
 
 interface Member {
   id: number;
@@ -36,13 +38,13 @@ const MemberList = () => {
   }, []);
 
   const deleteMember = async (id: number) => {
-    if(!confirm("delete this member?")) return;
-
     try{
       await api.delete(`/members/${id}`);
       fetchMembers();
+      message.success("Member deleted successfully");
     } catch (error) {
       console.error("Delete Failed", error);
+      toast.error("Could delete member");
     }
   };
 
@@ -127,12 +129,21 @@ return (
                   >
                     <Edit3 size={16} /> <span>Edit</span>
                   </button>
-                  <button
-                    className="action-icon-btn delete-v"
-                    onClick={() => deleteMember(member.id)}
+                  <Popconfirm
+                    title="Delete the member"
+                    description="Are you sure to delete this member?"
+                    onConfirm={() => deleteMember(member.id)}
+                    okText="yes"
+                    cancelText="No"
                   >
-                    <Trash2 size={16} /> <span>Delete</span>
+                    <button
+                      className="action-icon-btn delete-v"
+                      // onClick={() => deleteMember(member.id)}
+                    >
+                      <Trash2 size={16} /> <span>Delete</span>
                   </button>
+                  </Popconfirm>
+                  
                 </td>
               </tr>
             ))
