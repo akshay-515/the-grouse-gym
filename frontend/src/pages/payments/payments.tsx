@@ -3,6 +3,7 @@ import "./payments.css"
 import api from "../../api/axios";
 import { User, CreditCard, DollarSign, Calendar, CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
+import { useLocation } from "react-router-dom";
 interface Member {
     id: number;
     name: string;
@@ -26,6 +27,8 @@ const Payments = () => {
         plan_type: "MONTHLY"
     });
 
+    const location = useLocation();
+
     const fetchMembers = async () => {
         setLoading(true);
         try{
@@ -33,13 +36,13 @@ const Payments = () => {
             const res =await api.get("/members/eligible");
             setMembers(res.data.data);
 
-            if(res.data.data.length > 0) {
-                setForm(prev => ({
-                    ...prev,
-                    // member_id: res.data.data[0].id.toString()
-                    member_id: prev.member_id || res.data.data[0].id.toString()
-                }));
-            }
+            // if(res.data.data.length > 0) {
+            //     setForm(prev => ({
+            //         ...prev,
+            //         // member_id: res.data.data[0].id.toString()
+            //         member_id: prev.member_id || res.data.data[0].id.toString()
+            //     }));
+            // }
         } catch (error) {
             console.error("failed to load members");
         } finally {
@@ -48,8 +51,38 @@ const Payments = () => {
     };
 
     useEffect(() => {
-        fetchMembers();
-    },[]);
+        const fetch = async () => {
+            const res = await api.get("/members/eligible");
+            setMembers(res.data.data);
+        };
+
+        fetch();
+    }, []);
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const memberIdFromURL = params.get("memberId");
+
+        if (members.length === 0) return;
+
+        if (memberIdFromURL) {
+            setForm(prev => ({
+                ...prev,
+                member_id: memberIdFromURL
+            }));
+        } else {
+            setForm(prev => ({
+                ...prev,
+                member_id: members[0].id.toString()
+            }));
+        }
+      console.log("URL memberId:", memberIdFromURL);
+      console.log("Form member_id:", form.member_id);
+
+    }, [members]);
+        
+    //   console.log("URL memberId:", memberIdFromURL);
+    //   console.log("Form member_id:", form.member_id);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target;
@@ -108,7 +141,6 @@ const Payments = () => {
         }
     };
 
-
 return (
     <div className="admin-page-wrapper">
         <div className="page-header">
@@ -134,7 +166,7 @@ return (
                     >
                         <option value="" hidden>Choose a member...</option>
                         {members.map((m) => (
-                            <option key={m.id} value={m.id}>{m.name}</option>
+                            <option key={m.id} value={m.id.toString()}>{m.name}</option>
                         ))}
                     </select>
                 </div>

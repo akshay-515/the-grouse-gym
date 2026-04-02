@@ -7,7 +7,7 @@ const PaymentList = () => {
     const [paymentList, setPaymentList] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
-    const rowsPerPage = 7;
+    const rowsPerPage = 8;
 
     useEffect(() => {
         const fetchPaymentList = async () => {
@@ -50,7 +50,7 @@ const PaymentList = () => {
                 <table className="elite-members-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>S.NO</th>
                             <th>Member</th>
                             <th>Amount</th>
                             <th>Mode</th>
@@ -66,9 +66,9 @@ const PaymentList = () => {
                                 </td>
                             </tr>
                         ) : paginatedPayments.length > 0 ? (
-                            paginatedPayments.map((payment: any) => (
+                            paginatedPayments.map((payment: any, index) => (
                                 <tr key={payment.id}>
-                                    <td className="index-col">{payment.id}</td>
+                                    <td className="index-col">{(page - 1) * rowsPerPage + index + 1}</td>
                                     <td className="member-name-cell">
                                         <User size={14} className="cell-icon" /> {payment.member_name}
                                     </td>

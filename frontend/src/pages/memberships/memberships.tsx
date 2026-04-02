@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import api from "../../api/axios";
 import { ChevronLeft, ChevronRight, ShieldCheck, User } from "lucide-react";
 import "./memberships.css"
+import { useNavigate } from "react-router-dom";
 
 interface Membership {
     id: number;
@@ -12,10 +13,12 @@ interface Membership {
 }
 
 const Memberships = () => {
-    const[memberships, setMemberships] = useState<Membership[]>([])
+    const [memberships, setMemberships] = useState<Membership[]>([])
+    const [statusFilter, setStatusFilter] = useState("STATUS");
     const [page, setPage] = useState(1);
 
     const rowsPerPage = 8;
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchmemberships = async() => {
@@ -30,23 +33,54 @@ const Memberships = () => {
     }, []);
 
     const getStatus = (end_date: string) => {
-        const today = new Date;
+        const today = new Date();
+        today.setHours(0,0,0,0);
+
         const end = new Date(end_date);
-        return end >= today ? "Active" : "Expired";
+        end.setHours(0,0,0,0);
+
+        const diffTime = end.getTime() - today.getTime();
+        const diffDays = Math.ceil(diffTime / (1000*60*60*24));
+
+        if(diffDays < 0) return {label: "Expired", type: "expired"};
+
+        if(diffDays <= 7) {
+            return {label: `Expires in ${diffDays} day${diffDays > 1 ? "s" : ""}`, type: "expiring"};
+        }
+
+        return {label: "Active", type: "active"};
     };
 
-    const paginatedMemberships = memberships.slice(
+    const filteredMemberships = memberships.filter((m) => {
+        const status = getStatus(m.end_date);
+
+        if(statusFilter === "ACTIVE") return status.type === "active";
+        if(statusFilter === "EXPIRED") return status.type === "expired";
+        if(statusFilter === "EXPIRING") return status.type === "expiring";
+
+        return true;
+    })
+
+    const sortedMemberships = [...filteredMemberships].sort((a, b) => {
+        return new Date(a.end_date).getTime() - new Date(b.end_date).getTime();
+    });
+
+    const paginatedMemberships = sortedMemberships.slice(
         (page - 1) * rowsPerPage,
         page * rowsPerPage
     );
 
-    const totalPages = Math.max(1, Math.ceil(memberships.length / rowsPerPage));
+    const totalPages = Math.max(1, Math.ceil(filteredMemberships.length / rowsPerPage));
 
     useEffect(() => {
         if (page > totalPages) {
             setPage(totalPages);
         }
-    }, [memberships, totalPages]);
+    }, [filteredMemberships, totalPages]);
+
+    const handleRenew = (member: Membership) => {
+        navigate(`/payments?memberId=${member.id}`);
+    }
 
 return (
     <div className="admin-page-wrapper">
@@ -69,36 +103,72 @@ return (
                         <th>Plan Type</th>
                         <th>Start Date</th>
                         <th>Expiry Date</th>
-                        <th>Status</th>                        
+                        <th>
+                          <select 
+                            value={statusFilter}
+                            onChange={(e) => {
+                              setStatusFilter(e.target.value);
+                              setPage(1);
+                            }}
+                            className="status-filter" 
+                          >
+                            <option value="STATUS">Status</option>
+                            <option value="ACTIVE">Active</option>
+                            <option value="EXPIRED">Expired</option>
+                            <option value="EXPIRING">Expiring (7 days)</option>
+                          </select>
+                        </th>                        
                     </tr>
                 </thead>
 
-                <tbody>
-                    {paginatedMemberships.map((m, index) => (
+                <tbody className="membership-table-body">
+                    {paginatedMemberships.map((m, index) => {
+                        const status = getStatus(m.end_date);   
+
+                        return (
                         <tr key={m.id}>
                             <td className="index-col">{(page - 1) * rowsPerPage + index + 1}</td>
+
                             <td className="member-name-cell">
-                                <User size={14} className="cell-icon" /> {m.member_name}
-                            </td>
-                            <td>
-                                <span className="plan-tag">{m.plan_type}</span>
-                            </td>
-                            <td className="date-cell">{new Date(m.start_date).toLocaleDateString()}</td>
-                            <td className="date-cell">
-                                <span className={getStatus(m.end_date) === "Expired" ? "text-red" : ""}>
-                                    {new Date(m.end_date).toLocaleDateString()}
-                                </span>
+                            <User size={14} className="cell-icon" /> {m.member_name}
                             </td>
 
                             <td>
-                                <span className={`elite-status-badge ${getStatus(m.end_date).toLowerCase()}`}>
-                                    <span className="dot"></span>
-                                    {getStatus(m.end_date)}
+                            <span className="plan-tag">{m.plan_type}</span>
+                            </td>
+
+                            <td className="date-cell">
+                            {new Date(m.start_date).toLocaleDateString()}
+                            </td>
+
+                            <td className="date-cell">
+                            <span className={status.type === "expired" ? "text-red" : ""}>
+                                {new Date(m.end_date).toLocaleDateString()}
+                            </span>
+                            </td>
+                            <td>
+                            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                
+                                <span className={`elite-status-badge ${status.type}`}>
+                                <span className="dot"></span>
+                                {status.label}
                                 </span>
+
+                                {(status.type === "expiring" || status.type === "expired") && (
+                                <button
+                                    className="renew-btn"
+                                    onClick={() => handleRenew(m)}
+                                >
+                                    Renew
+                                </button>
+                                )}
+
+                            </div>
                             </td>
                         </tr>
-                    ))}
-                </tbody>
+                        );
+                    })}
+                    </tbody>
             </table>
         </div>
 

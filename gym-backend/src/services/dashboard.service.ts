@@ -56,7 +56,7 @@ export const getDashboardStats = async () => {
       totalRevenue: Number(totalRevenue.rows[0].coalesce),
       monthlyRevenue: Number(monthlyRevenue.rows[0].coalesce),
       recentPayments: recentPayments.rows,
-      paymentList: Number(paymentList.rows)
+      paymentList: paymentList.rows
     };
 
   } finally {

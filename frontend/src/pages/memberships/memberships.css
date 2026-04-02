@@ -43,7 +43,6 @@
   width: 84%;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  padding-right: 12px;
 }
 
 .elite-members-table {
@@ -133,6 +132,10 @@
   cursor: default;
 }
 
+.membership-table-body{
+  padding-left: 1rem;
+}
+
 .elite-members-table tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.05) !important;
   transform: translateX(8px);
@@ -185,4 +188,21 @@
 .pag-info span { 
   color: var(--accent-blue); 
   font-weight: 700; 
+}
+
+.renew-btn {
+  background: linear-gradient(135deg, #ff9800, #ffb300);
+  border: none;
+  color: black;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: 0.2s;
+}
+
+.renew-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
 }
