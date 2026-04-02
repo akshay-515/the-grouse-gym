@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
-import { ChevronLeft, ChevronRight, CreditCard, User, IndianRupee } from "lucide-react";
+import { ChevronLeft, ChevronRight, CreditCard, User} from "lucide-react";
 import "./paymentList.css";
 
 const PaymentList = () => {

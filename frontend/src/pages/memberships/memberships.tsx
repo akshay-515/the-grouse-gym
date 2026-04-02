@@ -15,7 +15,7 @@ const Memberships = () => {
     const[memberships, setMemberships] = useState<Membership[]>([])
     const [page, setPage] = useState(1);
 
-    const rowsPerPage = 7;
+    const rowsPerPage = 8;
 
     useEffect(() => {
         const fetchmemberships = async() => {

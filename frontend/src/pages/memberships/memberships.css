@@ -64,6 +64,7 @@
 
 .elite-members-table td {
   padding: 18px 20px;
+  height: 2rem;
   border-bottom: 1px solid var(--border-glass);
   font-size: 0.9rem;
 }

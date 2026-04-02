@@ -3,6 +3,7 @@ import "./updatemember.css"
 import { useEffect, useState } from "react";
 import { User, Phone, Hash, Calendar, RefreshCw } from "lucide-react";
 import api from "../../../api/axios";
+import toast from "react-hot-toast";
 
 const EditMember = () => {
     const navigate = useNavigate();
@@ -51,12 +52,12 @@ const EditMember = () => {
         try{
             const response = await api.put(`/members/${id}`, form);
             if(response.data){
-                alert("Member updated succesfully");
+                toast.success("Member updated succesfully")
             }
             console.log("the updated members :",response.data);
             navigate("/members")
-        } catch (error){
-            console.error("couldn't updated members", error)
+        } catch (error: any){
+            toast.error(error)
         }
     };
 

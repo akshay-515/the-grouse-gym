@@ -28,6 +28,7 @@ const MemberList = () => {
     try {
       const response = await api.get("/members");
       setMembers(response.data.data);
+      console.log("the members:", response.data.data);
     } catch (error) {
       console.error("Error fetching members", error);
     }
