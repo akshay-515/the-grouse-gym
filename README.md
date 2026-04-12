@@ -7,9 +7,8 @@ Frontend: https://the-grouse-gym.vercel.app/
 
 🛠 Tech Stack
 
-Frontend: - React.js (Vite)
-- Redux Toolkit (State Management)
-- Tailwind CSS (Styling with Glassmorphism)
+Frontend: 
+- React.js (Vite)
 - Axios (API Calls)
 
 Backend:
