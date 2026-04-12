@@ -36,5 +36,5 @@ Prerequisites
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/gym-project.git](https://github.com/your-username/gym-project.git)
+   git clone https://github.com/akshay-515/the-grouse-gym.git
    cd gym-project
