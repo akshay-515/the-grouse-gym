@@ -103,20 +103,21 @@ return (
                         <th>Plan Type</th>
                         <th>Start Date</th>
                         <th>Expiry Date</th>
-                        <th>
-                          <select 
+                        <th className="table-header-cell">
+                        <select 
                             value={statusFilter}
                             onChange={(e) => {
-                              setStatusFilter(e.target.value);
-                              setPage(1);
+                            setStatusFilter(e.target.value);
+                            setPage(1);
                             }}
                             className="status-filter" 
-                          >
-                            <option value="STATUS">Status</option>
+                        >
+                            <option value="STATUS" hidden>Status</option>
+                            <option value="ALL">All Members</option>
                             <option value="ACTIVE">Active</option>
                             <option value="EXPIRED">Expired</option>
                             <option value="EXPIRING">Expiring (7 days)</option>
-                          </select>
+                        </select>
                         </th>                        
                     </tr>
                 </thead>
