@@ -90,15 +90,39 @@ export const deleteMemberService = async (id: number) => {
     return result.rows[0];
 };
 
-export const getEligibleMembersService = async () => {
-    const result = await db.query(`
-        SELECT m.id, m.name
-        FROM members m
-        LEFT JOIN memberships ms
-          ON m.id = ms.member_id
-          AND ms.end_date >= CURRENT_DATE
-        WHERE ms.id IS NULL
-        ORDER BY m.name ASC`);
+// export const getEligibleMembersService = async () => {
+//     const result = await db.query(`
+//         SELECT m.id, m.name
+//         FROM members m
+//         LEFT JOIN memberships ms
+//           ON m.id = ms.member_id
+//           AND ms.end_date >= CURRENT_DATE
+//         WHERE ms.id IS NULL
+//         ORDER BY m.name ASC`);
 
+//     return result.rows;
+// }
+
+export const getEligibleMembersService = async (memberId?: number) => {
+    let query = `
+      SELECT DISTINCT m.id, m.name
+      FROM members m
+      LEFT JOIN memberships ms 
+        ON m.id = ms.member_id
+        AND ms.end_date >= CURRENT_DATE
+      WHERE ms.id IS NULL
+    `;
+
+    const values: any[] = [];
+
+    if (memberId) {
+        query += ` OR m.id = $1`;
+        values.push(memberId);
+    }
+
+    query += ` ORDER BY m.name ASC`;
+
+    const result = await db.query(query, values);
+    console.log("Query result:", result.rows);
     return result.rows;
-}
+};

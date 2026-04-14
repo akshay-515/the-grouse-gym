@@ -4,6 +4,7 @@ import api from "../../api/axios";
 import { User, CreditCard, DollarSign, Calendar, CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
+
 interface Member {
     id: number;
     name: string;
@@ -33,16 +34,15 @@ const Payments = () => {
         setLoading(true);
         try{
             console.log("Submitting member_id:", form.member_id);
-            const res =await api.get("/members/eligible");
-            setMembers(res.data.data);
+            const params = new URLSearchParams(location.search);
+            const memberIdFromURL = params.get("memberId");
 
-            // if(res.data.data.length > 0) {
-            //     setForm(prev => ({
-            //         ...prev,
-            //         // member_id: res.data.data[0].id.toString()
-            //         member_id: prev.member_id || res.data.data[0].id.toString()
-            //     }));
-            // }
+            const res = await api.get("/members/eligible", {
+                params: {
+                    memberId: memberIdFromURL
+                }
+            });
+            setMembers(res.data.data);
         } catch (error) {
             console.error("failed to load members");
         } finally {
@@ -52,7 +52,14 @@ const Payments = () => {
 
     useEffect(() => {
         const fetch = async () => {
-            const res = await api.get("/members/eligible");
+            const params = new URLSearchParams(location.search);
+            const memberIdFromURL = params.get("memberId");
+
+            const res = await api.get("/members/eligible", {
+                params: {
+                    memberId: memberIdFromURL
+                }
+            });
             setMembers(res.data.data);
         };
 
@@ -80,9 +87,6 @@ const Payments = () => {
       console.log("Form member_id:", form.member_id);
 
     }, [members]);
-        
-    //   console.log("URL memberId:", memberIdFromURL);
-    //   console.log("Form member_id:", form.member_id);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target;

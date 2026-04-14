@@ -4,6 +4,7 @@ export const getAllMembershipsService = async () => {
     const result = await db.query(
         `SELECT
           m.id,
+          m.member_id,
           mem.name AS member_name,
           m.plan_type,
           m.start_date,

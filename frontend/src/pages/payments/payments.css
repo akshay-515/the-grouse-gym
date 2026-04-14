@@ -4,19 +4,21 @@
   --text-white: #ffffff;
   --text-dim: #8a8aa0;
   --accent-green: #00e676;
-  --border-glass: rgba(255, 255, 255, 0.05);
+  --border-glass: rgba(255,255,255,0.05);
   --input-bg: #252530;
 }
 
 .admin-page-wrapper {
   background-color: var(--bg-darker);
-  min-height: 92%;
-  padding: 40px 20px;
+  min-height: 100vh;
+  padding: 30px 20px;
   color: var(--text-white);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
+/* HEADER */
 
 .page-header {
   width: 100%;
@@ -24,14 +26,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
   margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 
 .payment-icon {
-  background: rgba(0, 230, 118, 0.1);
+  background: rgba(0,230,118,0.1);
   padding: 12px;
   border-radius: 12px;
 }
+
+/* FORM CARD */
 
 .glass-form-card {
   width: 100%;
@@ -39,9 +45,11 @@
   background: var(--glass-bg);
   border: 1px solid var(--border-glass);
   border-radius: 20px;
-  padding: 40px;
+  padding: 32px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
+
+/* FORM */
 
 .elite-form {
   display: flex;
@@ -64,14 +72,20 @@
   font-weight: 500;
 }
 
+/* ROWS */
+
 .form-row {
   display: flex;
   gap: 20px;
 }
 
-.flex-1 { flex: 1; }
+.flex-1 {
+  flex: 1;
+}
 
-.elite-form input, 
+/* INPUTS */
+
+.elite-form input,
 .elite-form select {
   background: var(--input-bg);
   border: 1px solid var(--border-glass);
@@ -82,15 +96,18 @@
   transition: all 0.2s ease;
 }
 
-.elite-form input:focus, 
+.elite-form input:focus,
 .elite-form select:focus {
   outline: none;
   border-color: var(--accent-green);
   background: #2a2a38;
-  box-shadow: 0 0 0 4px rgba(0, 230, 118, 0.15);
+  box-shadow: 0 0 0 4px rgba(0,230,118,0.15);
 }
 
+/* BUTTON */
+
 .payment-accent {
+  width: 100%;
   background: linear-gradient(135deg, #00e676, #00c853);
   margin-top: 10px;
   color: white;
@@ -103,13 +120,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
 }
 
 .payment-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 230, 118, 0.3);
-  filter: brightness(1.1);
+  box-shadow: 0 8px 20px rgba(0,230,118,0.3);
 }
 
 .elite-date-picker::-webkit-calendar-picker-indicator {
@@ -120,4 +135,76 @@
 select option {
   background: var(--glass-bg);
   color: white;
+}
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 1024px) {
+  .admin-page-wrapper {
+    padding: 20px 16px;
+  }
+
+  .glass-form-card {
+    padding: 24px;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 768px) {
+  .admin-page-wrapper {
+    padding: 16px 12px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .glass-form-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .elite-form {
+    gap: 18px;
+  }
+
+  .payment-accent {
+    font-size: 0.95rem;
+    padding: 14px;
+  }
+}
+
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 480px) {
+  .admin-page-wrapper {
+    padding: 12px 10px;
+  }
+
+  .glass-form-card {
+    padding: 16px;
+  }
+
+  .input-container label {
+    font-size: 0.8rem;
+  }
+
+  .elite-form input,
+  .elite-form select {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .payment-accent {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
 }
