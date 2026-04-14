@@ -78,8 +78,13 @@ export const deleteMember = async (req: Request, res: Response) => {
 };
 
 export const getEligibleMembers = async (req: Request, res: Response) => {
+    const memberId = req.query.memberId
+        ? Number(req.query.memberId)
+        : undefined;
+    console.log("Received memberId:", memberId);
+
     try {
-        const members = await getEligibleMembersService();
+        const members = await getEligibleMembersService(Number(memberId));
         res.status(200).json({
             success: true,
             data: members

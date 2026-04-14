@@ -97,7 +97,6 @@ return (
       <table className="original-structure-table">
         <thead>
           <tr>
-            <th></th>
             <th>S.No</th>
             <th>ID</th>
             <th>Name</th>

@@ -1,11 +1,13 @@
 .login-container {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 
-  background: 
+  background:
     linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
     url("../../assets/gym bg1.webp");
 
@@ -13,21 +15,27 @@
   background-position: center;
 }
 
+/* CARD */
+
 .login-card {
   background: rgba(17, 24, 39, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
   padding: 32px;
-  width: 350px;
-  border-radius: 12px;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 16px;
 
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
 
   text-align: center;
   color: white;
+  box-sizing: border-box;
 }
+
+/* TITLE */
 
 .login-card h2 {
   margin-bottom: 8px;
@@ -40,6 +48,8 @@
   color: #9ca3af;
   margin-bottom: 24px;
 }
+
+/* FORM */
 
 .form-group {
   text-align: left;
@@ -54,11 +64,12 @@
 }
 
 .form-group input {
-  width: 94%;
-  padding: 11px;
+  width: 100%;
+  padding: 12px;
   border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
+  box-sizing: border-box;
 
   background: rgba(255,255,255,0.05);
   color: white;
@@ -77,53 +88,7 @@
   box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
 }
 
-/* .login-btn {
-  width: 100%;
-  padding: 11px;
-  margin-top: 12px;
-
-  background: linear-gradient(135deg, #1e3a8a, #2563eb);
-  color: white;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-  transition: all 0.25s ease;
-}
-
-.login-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
-  background: linear-gradient(135deg, #1d4ed8, #3b82f6);
-} */
-
-.login-btn {
-  width: 100%;
-  padding: 11px;
-  margin-top: 12px;
-
-  background: linear-gradient(135deg, #ef4444, #f97316);
-  color: white;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-  transition: all 0.25s ease;
-}
-
-.login-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 6px 25px rgba(249, 115, 22, 0.6);
-  background: linear-gradient(135deg, #dc2626, #ea580c);
-}
+/* PASSWORD */
 
 .password-wrapper {
   position: relative;
@@ -133,15 +98,84 @@
 
 .password-wrapper input {
   width: 100%;
-  padding-right: 40px; /* space for button */
+  padding-right: 42px;
 }
 
 .toggle-password {
   position: absolute;
-  right: 10px;
+  right: 12px;
   cursor: pointer;
-  font-size: 0.85rem;
-  color: #6b7280;
   font-size: 1rem;
+  color: #9ca3af;
+}
+
+/* BUTTON */
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+
+  background: linear-gradient(135deg, #ef4444, #f97316);
+  color: white;
   font-weight: 600;
+  letter-spacing: 0.5px;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  box-shadow: 0 4px 15px rgba(239,68,68,0.4);
+  transition: all 0.25s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(249,115,22,0.6);
+  background: linear-gradient(135deg, #dc2626, #ea580c);
+}
+
+/* ---------- TABLET ---------- */
+
+@media (max-width: 768px) {
+  .login-container {
+    padding: 16px;
+  }
+
+  .login-card {
+    padding: 24px;
+    max-width: 100%;
+  }
+}
+
+/* ---------- SMALL MOBILE ---------- */
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 12px;
+    align-items: center;
+  }
+
+  .login-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .login-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .login-subtext {
+    font-size: 13px;
+  }
+
+  .form-group input {
+    padding: 11px;
+    font-size: 13px;
+  }
+
+  .login-btn {
+    padding: 11px;
+    font-size: 0.95rem;
+  }
 }

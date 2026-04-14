@@ -6,30 +6,27 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
-  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 0px 10px rgba(0,0,0,0.1);
   position: sticky;
   top: 0;
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
 }
 
-.sidebar .logo {
+.logo {
   font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 1px;
-  color: #3b82f6; 
+  color: #3b82f6;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 40px;
   border-bottom: 1px solid #374151;
   padding-bottom: 10px;
-}
-
-.sidebar a {
-  display: block;
-  color: #d1d5db;
-  text-decoration: none;
-  margin: 15px 0;
-}
-
-.sidebar a:hover {
-  color: white;
 }
 
 .sidebar nav a {
@@ -40,14 +37,14 @@
   border-radius: 8px;
   margin-bottom: 8px;
   font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   border-left: 4px solid transparent;
 }
 
 .sidebar nav a.active {
-  background-color: #1f2937; 
-  color: #3b82f6;            
-  border-left: 4px solid #3b82f6; 
+  background-color: #1f2937;
+  color: #3b82f6;
+  border-left: 4px solid #3b82f6;
   font-weight: 700;
 }
 
@@ -57,10 +54,66 @@
   transform: translateX(5px);
 }
 
-.sidebar nav a.active {
-  background-color: #1f2937;
+/* MOBILE TOPBAR */
+
+.mobile-topbar {
+  display: none;
+  height: 60px;
+  background: #16161e;
+  color: white;
+  padding: 0 16px;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid #2a2a35;
+}
+
+.mobile-logo {
+  font-size: 1.2rem;
   color: #3b82f6;
-  border-left: 4px solid #3b82f6; 
-  font-weight: 700;
-  transform: translateX(5px); 
+}
+
+.menu-btn,
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* OVERLAY */
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+/* TABLET + MOBILE */
+
+@media (max-width: 768px) {
+  .mobile-topbar {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    height: 100%;
+    width: 260px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
+
+/* DESKTOP */
+
+@media (min-width: 769px) {
+  .close-btn {
+    display: none;
+  }
 }

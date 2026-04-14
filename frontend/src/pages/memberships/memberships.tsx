@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Membership {
     id: number;
+    member_id: number;
     member_name: string;
     plan_type: string;
     start_date: string;
@@ -62,7 +63,7 @@ const Memberships = () => {
     })
 
     const sortedMemberships = [...filteredMemberships].sort((a, b) => {
-        return new Date(a.end_date).getTime() - new Date(b.end_date).getTime();
+        return b.id - a.id;
     });
 
     const paginatedMemberships = sortedMemberships.slice(
@@ -79,7 +80,8 @@ const Memberships = () => {
     }, [filteredMemberships, totalPages]);
 
     const handleRenew = (member: Membership) => {
-        navigate(`/payments?memberId=${member.id}`);
+        console.log("Renew clicked member:", member);
+        navigate(`/payments?memberId=${member.member_id}`);
     }
 
 return (
