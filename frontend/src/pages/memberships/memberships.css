@@ -52,7 +52,6 @@
 .elite-members-table th {
   background: rgba(255, 255, 255, 0.02);
   padding: 16px 20px;
-  text-align: left;
   font-size: 0.75rem;
   text-transform: uppercase;
   color: var(--text-dim);
@@ -61,7 +60,8 @@
 }
 
 .elite-members-table td {
-  padding: 18px 20px;
+  padding: 18px 70px;
+  text-align: center;
   height: 2rem;
   border-bottom: 1px solid var(--border-glass);
   font-size: 0.9rem;
@@ -106,8 +106,9 @@
 
 .member-name-cell {
   font-weight: 600;
+  text-align: center;
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -196,6 +197,10 @@
 
 .elite-members-table tr:hover .date-cell {
   color: #fff;
+}
+
+.date-cell{
+  justify-content: center;
 }
 
 .elite-pagination {

@@ -140,6 +140,11 @@
   .navbar-heading {
     font-size: 1.2rem;
   }
+
+  .logout-trigger {
+    background: #ff4d4d;
+    color: #ede2e5;
+  }
 }
 
 /* ---------- MOBILE ---------- */
@@ -170,6 +175,8 @@
   .logout-trigger {
     padding: 8px 14px;
     font-size: 0.9rem;
+    background: #ff4d4d;
+    color: #ede2e5;
   }
 }
 
@@ -184,6 +191,8 @@
 
   .logout-trigger {
     width: 32%;
+    background: #ff4d4d;
+    color: #ede2e5;
   }
 
   .modal-content {

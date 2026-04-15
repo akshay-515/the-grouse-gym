@@ -149,7 +149,7 @@ return (
                                 {new Date(m.end_date).toLocaleDateString()}
                             </span>
                             </td>
-                            <td>
+                            <td className="date-cell">
                             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                                 
                                 <span className={`elite-status-badge ${status.type}`}>
