@@ -33,10 +33,11 @@
 .date-display {
   color: #cbd5e1;
   font-size: 0.95rem;
+  margin-top: 0.9rem;
 }
 
 .logout-trigger {
-  background: #ef4444;
+  background: #1a1a1a;
   color: white;
   border: none;
   padding: 10px 18px;
