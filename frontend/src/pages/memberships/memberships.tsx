@@ -97,7 +97,8 @@ return (
         </div>
 
         <div className="glass-table-container">
-            <table className="elite-members-table">
+            <div className="membership-table-wrapper">
+               <table className="elite-members-table">
                 <thead>
                     <tr>
                         <th>S.No</th>
@@ -172,7 +173,9 @@ return (
                         );
                     })}
                     </tbody>
-            </table>
+            </table> 
+            </div>
+            
         </div>
 
         {totalPages > 1 && (

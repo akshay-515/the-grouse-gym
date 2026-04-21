@@ -60,7 +60,7 @@
 }
 
 .elite-members-table td {
-  padding: 18px 70px;
+  padding: 18px 40px;
   text-align: center;
   height: 2rem;
   border-bottom: 1px solid var(--border-glass);
@@ -108,7 +108,7 @@
   font-weight: 600;
   text-align: center;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   gap: 8px;
 }
 
@@ -189,7 +189,7 @@
   background: rgba(255, 82, 82, 0.2);
 }
 
-.elite-members-table tr:hover .cell-icon {
+.elite-members-table tr:hover .member-name-cell {
   color: var(--accent-blue);
   transform: scale(1.2);
   transition: all 0.2s ease;
@@ -248,7 +248,36 @@
   box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
 }
 
-/* ---------- TABLET ---------- */
+@media screen and (max-width: 1440px) and (min-width: 1025px) {
+  .membership-table-body {
+    font-size: 0.85rem; 
+  }
+
+  .elite-members-table td {
+    padding: 10px 8px !important; 
+  }
+
+  .elite-status-badge {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .renew-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+
+  .plan-tag {
+    padding: 2px 6px;
+    font-size: 11px;
+  }
+
+  .membership-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 @media (max-width: 1024px) {
   .admin-page-wrapper {
@@ -258,9 +287,14 @@
   .header-text h1 {
     font-size: 1.6rem;
   }
+
+  .membership-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
-/* ---------- MOBILE ---------- */
 
 @media (max-width: 768px) {
   .admin-page-wrapper {
@@ -284,9 +318,13 @@
     width: 100%;
     margin-top: 6px;
   }
-}
 
-/* ---------- SMALL MOBILE ---------- */
+  .membership-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 @media (max-width: 480px) {
   .admin-page-wrapper {
@@ -315,4 +353,36 @@
     width: 100%;
     justify-content: center;
   }
+
+  .membership-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Professional Scrollbar for Chrome, Safari, and Edge */
+.glass-table-container::-webkit-scrollbar {
+  height: 6px; 
+  width: 6px;
+}
+
+.glass-table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.glass-table-container::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5); 
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.glass-table-container::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6; 
+}
+
+.glass-table-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(93, 102, 117, 0.5) rgba(255, 255, 255, 0.05);
 }

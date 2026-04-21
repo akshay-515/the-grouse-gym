@@ -7,11 +7,18 @@
   box-sizing: border-box;
 }
 
+.members-inner-container{
+  width: 85%;
+  margin-left: 8%;
+  padding-top: 2rem;
+}
+
 .members-header-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
+  padding: 0 4%
 }
 
 .members-header-section h1 { 
@@ -298,4 +305,27 @@
   .elite-pagination {
     flex-direction: column;
   }
+}
+
+.elite-table-card::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.elite-table-card ::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.elite-table-card ::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5); 
+  transition: background 0.3s ease;
+}
+.elite-table-card ::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6; 
+}
+
+.elite-table-card  {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(93, 102, 117, 0.5) rgba(255, 255, 255, 0.05);
 }

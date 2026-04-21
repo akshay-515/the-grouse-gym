@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import api from "../../api/axios";
 import "./dashboard.css"
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlarmClock, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 interface DashboardSummary {
   totalMembers: number;
@@ -54,13 +56,13 @@ const Dashboard = () => {
                 <p className="stat-value">{data.totalMembers}</p>
                 <span className="stat-subtext">{data.activeMemberships} Active</span>
             </div>
-            <div className="stat-icon members-icon">👤</div>
+            <div className="stat-icon members-icon"><FontAwesomeIcon icon={faUsers} /></div>
         </Link>
 
         <div className="stat-card">
             <div className="membership-stat-info">
                 <h3>Membership Status</h3>
-                <div className="status-mini-flex">
+                <div className="stat-info">
                     <p className="stat-value">{data.activeMemberships}</p>
                     <span className="status-tag active">Active</span>
                 </div>
@@ -77,7 +79,7 @@ const Dashboard = () => {
                 <p className="stat-value">{data.expiringSoon}</p>
                 <span className="stat-subtext">Within 7 days</span>
             </div>
-            <div className="stat-icon clock-icon">🕒</div>
+            <div className="stat-icon clock-icon"><FontAwesomeIcon icon={faAlarmClock} /></div>
         </div>
 
         <div className="stat-card revenue">
