@@ -65,12 +65,12 @@
 }
 
 .membership-stat-info{
-  font-size: 0.85rem;
+  font-size: 0.77rem;
   color: white;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
-  height: 11rem;
+  height: 10rem;
 }
 
 .stat-value {

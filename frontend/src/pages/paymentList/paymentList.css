@@ -1,28 +1,49 @@
-/* Reusing the variables from your theme */
 .amount-cell {
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.5px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.5px;
 }
 
-/* Ensure the wrapper matches the layout of the membership page */
 .admin-page-wrapper {
-    padding-bottom: 50px; /* Extra space for pagination */
+  padding-bottom: 50px;
 }
 
-/* Specific overrides if needed for the ID column */
 .index-col {
-    color: var(--accent-blue);
-    font-weight: 500;
-    font-size: 0.85rem;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.85rem;
 }
 
-/* Make sure the header icon box looks consistent */
 .header-icon-box {
-    background: rgba(61, 90, 254, 0.1);
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(61, 90, 254, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: rgba(61, 90, 254, 0.1);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(61, 90, 254, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.membership-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.membership-table-wrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+.membership-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.membership-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #3b82f6;
+}
+
+.membership-table-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(93, 102, 117, 0.5) rgba(255, 255, 255, 0.05);
 }

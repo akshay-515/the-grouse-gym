@@ -68,7 +68,8 @@ const MemberList = () => {
 
 return (
   <div className="members-view-wrapper">
-    <div className="members-header-section">
+    <div className="members-inner-container">
+      <div className="members-header-section">
       <div className="header-text">
         <h1>Members</h1>
         <p className="sub-subtitle">Manage and monitor all gym members</p>
@@ -164,6 +165,7 @@ return (
         </button>
       </div>
     )}
+    </div>
   </div>
 );
 };
