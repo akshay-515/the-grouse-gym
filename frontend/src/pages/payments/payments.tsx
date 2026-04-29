@@ -3,7 +3,7 @@ import "./payments.css"
 import api from "../../api/axios";
 import { User, CreditCard, DollarSign, Calendar, CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Member {
     id: number;
@@ -29,6 +29,7 @@ const Payments = () => {
     });
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     const fetchMembers = async () => {
         setLoading(true);
@@ -70,23 +71,32 @@ const Payments = () => {
         const params = new URLSearchParams(location.search);
         const memberIdFromURL = params.get("memberId");
 
-        if (members.length === 0) return;
+        const fetch = async () => {
+            const res = await api.get("/members/eligible", {
+                params: {
+                    memberId: memberIdFromURL
+                }
+            });
 
-        if (memberIdFromURL) {
-            setForm(prev => ({
-                ...prev,
-                member_id: memberIdFromURL
-            }));
-        } else {
-            setForm(prev => ({
-                ...prev,
-                member_id: members[0].id.toString()
-            }));
-        }
-      console.log("URL memberId:", memberIdFromURL);
-      console.log("Form member_id:", form.member_id);
+            const data = res.data.data;
+            setMembers(data);
 
-    }, [members]);
+            // ✅ SET FORM HERE (not in separate useEffect)
+            if (memberIdFromURL) {
+                setForm(prev => ({
+                    ...prev,
+                    member_id: memberIdFromURL
+                }));
+            } else if (data.length > 0) {
+                setForm(prev => ({
+                    ...prev,
+                    member_id: data[0].id.toString()
+                }));
+            }
+        };
+
+        fetch();
+    }, [location.search]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const {name, value} = e.target;
@@ -139,6 +149,9 @@ const Payments = () => {
                 amount: PLAN_PRICES["MONTHLY"].toString(),
                 payment_date: ""
             }));
+
+            toast.success("Payment recorded successfully")
+            navigate("/memberships")
 
         } catch (error) {
             toast.error("Failed to record Payment");

@@ -20,7 +20,7 @@ const Memberships = () => {
 
     const rowsPerPage = 8;
     const navigate = useNavigate();
-
+ 
     useEffect(() => {
         const fetchmemberships = async() => {
             try{
@@ -151,7 +151,7 @@ return (
                             </span>
                             </td>
                             <td className="date-cell">
-                            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                            <div className="membership-status" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                                 
                                 <span className={`elite-status-badge ${status.type}`}>
                                 <span className="dot"></span>

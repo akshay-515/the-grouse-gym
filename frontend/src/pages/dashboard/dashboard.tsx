@@ -59,28 +59,28 @@ const Dashboard = () => {
             <div className="stat-icon members-icon"><FontAwesomeIcon icon={faUsers} /></div>
         </Link>
 
-        <div className="stat-card">
+        <Link to="/memberships" className="stat-card">
             <div className="membership-stat-info">
                 <h3>Membership Status</h3>
                 <div className="stat-info">
                     <p className="stat-value">{data.activeMemberships}</p>
-                    <span className="status-tag active">Active</span>
+                    {/* <span className="status-tag active">Active</span> */}
                 </div>
                 <span className="stat-subtext text-red">{data.expiredMemberships} Expired</span>
             </div>
             <div className="progress-ring-placeholder">
                 <div className="percentage">90%</div>
             </div>
-        </div>
+        </Link>
 
-        <div className="stat-card warning">
+        <Link to="/memberships" className="stat-card warning">
             <div className="stat-info">
                 <h3>Expiring Soon</h3>
                 <p className="stat-value">{data.expiringSoon}</p>
                 <span className="stat-subtext">Within 7 days</span>
             </div>
             <div className="stat-icon clock-icon"><FontAwesomeIcon icon={faAlarmClock} /></div>
-        </div>
+        </Link>
 
         <div className="stat-card revenue">
             <div className="revenue-content">
@@ -89,7 +89,7 @@ const Dashboard = () => {
                     <p className="stat-value">₹{data.totalRevenue.toLocaleString()}</p>
                 </div>
                 <div className="rev-item">
-                    <h3>Monthly</h3>
+                    <h3>This Month</h3>
                     <p className="stat-value small">₹{data.monthlyRevenue.toLocaleString()}</p>
                 </div>
             </div>

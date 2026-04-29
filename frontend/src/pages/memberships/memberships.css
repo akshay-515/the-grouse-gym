@@ -109,6 +109,7 @@
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
 }
 
@@ -200,6 +201,10 @@
 }
 
 .date-cell{
+  justify-content: center;
+}
+
+.membership-status{
   justify-content: center;
 }
 
