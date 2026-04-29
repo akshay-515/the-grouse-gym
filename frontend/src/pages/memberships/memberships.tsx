@@ -3,6 +3,7 @@ import api from "../../api/axios";
 import { ChevronLeft, ChevronRight, ShieldCheck, User } from "lucide-react";
 import "./memberships.css"
 import { useNavigate } from "react-router-dom";
+import RenewModal from "../../components/renewmodal/renewmodal";
 
 interface Membership {
     id: number;
@@ -17,6 +18,8 @@ const Memberships = () => {
     const [memberships, setMemberships] = useState<Membership[]>([])
     const [statusFilter, setStatusFilter] = useState("STATUS");
     const [page, setPage] = useState(1);
+    const [selectedMember, setSelectedMember] = useState<any>(null);
+    const [showmodal, setShowModal] = useState(false);
 
     const rowsPerPage = 8;
     const navigate = useNavigate();
@@ -80,8 +83,8 @@ const Memberships = () => {
     }, [filteredMemberships, totalPages]);
 
     const handleRenew = (member: Membership) => {
-        console.log("Renew clicked member:", member);
-        navigate(`/payments?memberId=${member.member_id}`);
+       setSelectedMember(member);
+       setShowModal(true);
     }
 
 return (
@@ -201,8 +204,19 @@ return (
                 </button>
             </div>   
         )}
+        
+        {showmodal && selectedMember && (
+          <RenewModal 
+            member={selectedMember}
+            onClose={() => setShowModal(false)}
+            onSuccess={() => {
+              setShowModal(false);
+              window.location.reload();
+            }}
+          /> 
+        )}
     </div>
-);
+    );
 };
 
 export default Memberships;
