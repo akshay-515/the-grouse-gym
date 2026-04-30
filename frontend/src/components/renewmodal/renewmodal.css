@@ -4,16 +4,84 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.75);
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(6px);
+  z-index: 1000;
 }
 
 .modal-card {
   background: #1c1c24;
-  padding: 20px;
-  border-radius: 12px;
-  width: 350px;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 16px;
+  padding: 30px;
+  width: 400px;
   color: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.modal-card h2 {
+  margin-bottom: 15px;
+}
+
+.modal-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-card input,
+.modal-card select {
+  background: #252530;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 10px;
+  color: white;
+}
+
+.modal-card button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-card button[type="submit"] {
+  background: linear-gradient(135deg, #00e676, #00c853);
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.modal-card button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 230, 118, 0.35);
+  filter: brightness(1.1);
+}
+
+/* Click (press) effect */
+.modal-card button[type="submit"]:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 10px rgba(0, 230, 118, 0.25);
+}
+
+.modal-card button[type="button"] {
+  background: #2a2a38;
+  color: #ccc;
+  transition: all 0.2s ease;
+}
+
+/* Hover */
+.modal-card button[type="button"]:hover {
+  background: #3a3a4a;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Click */
+.modal-card button[type="button"]:active {
+  transform: scale(0.96);
+  background: #222;
 }
