@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import api from "../../api/axios";
 import { ChevronLeft, ChevronRight, ShieldCheck, User } from "lucide-react";
 import "./memberships.css"
-import { useNavigate } from "react-router-dom";
 import RenewModal from "../../components/renewmodal/renewmodal";
 
 interface Membership {
@@ -21,9 +20,7 @@ const Memberships = () => {
     const [selectedMember, setSelectedMember] = useState<any>(null);
     const [showmodal, setShowModal] = useState(false);
 
-    const rowsPerPage = 8;
-    const navigate = useNavigate();
- 
+    const rowsPerPage = 8; 
     useEffect(() => {
         const fetchmemberships = async() => {
             try{
