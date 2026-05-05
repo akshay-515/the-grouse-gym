@@ -23,6 +23,12 @@
   justify-content: center;
 }
 
+.paymentlist-header{
+  display: flex;
+  gap: 2rem;
+  
+}
+
 .membership-table-wrapper::-webkit-scrollbar {
   height: 6px;
   width: 6px;

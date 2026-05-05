@@ -35,6 +35,16 @@
   color: var(--text-dim);
 }
 
+.membership-header-search{
+  gap: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.membership-header-search input{
+  height: 1rem;
+}
+
 .glass-table-container {
   background: var(--glass-bg);
   border: 1px solid var(--border-glass);

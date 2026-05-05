@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import api from "../../api/axios";
-import { ChevronLeft, ChevronRight, ShieldCheck, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, ShieldCheck, User } from "lucide-react";
 import "./memberships.css"
 import RenewModal from "../../components/renewmodal/renewmodal";
 
@@ -16,6 +16,7 @@ interface Membership {
 const Memberships = () => {
     const [memberships, setMemberships] = useState<Membership[]>([])
     const [statusFilter, setStatusFilter] = useState("STATUS");
+    const [search, setSearch] = useState("")
     const [page, setPage] = useState(1);
     const [selectedMember, setSelectedMember] = useState<any>(null);
     const [showmodal, setShowModal] = useState(false);
@@ -55,11 +56,18 @@ const Memberships = () => {
     const filteredMemberships = memberships.filter((m) => {
         const status = getStatus(m.end_date);
 
-        if(statusFilter === "ACTIVE") return status.type === "active";
-        if(statusFilter === "EXPIRED") return status.type === "expired";
-        if(statusFilter === "EXPIRING") return status.type === "expiring";
-
-        return true;
+        const matchesStatus = 
+          statusFilter === "STATUS" ||
+          statusFilter === "ALL" ||
+          (statusFilter === "ACTIVE" &&  status.type === "active") ||
+          (statusFilter === "EXPIRED" &&  status.type === "expired") ||
+          (statusFilter === "EXPIRING" &&  status.type === "expiring");
+  
+        const matchesSearch = 
+          m.member_name.toLowerCase().startsWith(search.toLowerCase()) ||
+          m.plan_type.toLowerCase().startsWith(search.toLowerCase());
+        
+        return matchesStatus && matchesSearch;
     })
 
     const sortedMemberships = [...filteredMemberships].sort((a, b) => {
@@ -91,8 +99,21 @@ return (
                 <h1>Memberships</h1>
                 <p className="membership-subtitle">Track all active and expired membership cycles</p>
             </div>
-            <div className="header-icon-box">
+            <div className="membership-header-search">
+              <div className="header-icon-box">
                 <ShieldCheck size={24} color="var(--accent-blue)" />
+              </div>
+              <div className="elite-search-bar">
+                <Search size={18} className="s-icon"/>
+                <input 
+                  type="text"
+                  placeholder="Search Memberships..."
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setPage(1);
+                  }} /> 
+              </div>
             </div>
         </div>
 
