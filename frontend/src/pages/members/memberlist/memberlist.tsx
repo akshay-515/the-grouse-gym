@@ -50,7 +50,7 @@ const MemberList = () => {
   };
 
   const filteredMembers = members.filter((m) => 
-    m.name.toLowerCase().includes(search.toLowerCase())
+    m.name.toLowerCase().startsWith(search.toLowerCase())
   );
 
   const paginatedMembers = filteredMembers.slice(

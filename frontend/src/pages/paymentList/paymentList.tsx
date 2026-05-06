@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import api from "../../api/axios";
-import { ChevronLeft, ChevronRight, CreditCard, User} from "lucide-react";
+import { ChevronLeft, ChevronRight, CreditCard, Search, User} from "lucide-react";
 import "./paymentList.css";
 
 const PaymentList = () => {
     const [paymentList, setPaymentList] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
     const rowsPerPage = 8;
 
     useEffect(() => {
@@ -17,6 +18,7 @@ const PaymentList = () => {
                 const data = response.data?.data?.paymentList || response.data?.data?.recentPayments;
                 if (data) {
                     setPaymentList(data);
+                    console.log(paymentList);
                 }
             } catch (error) {
                 console.error("Fetch error:", error);
@@ -27,7 +29,16 @@ const PaymentList = () => {
         fetchPaymentList();
     }, []);
 
-    const paginatedPayments = paymentList.slice(
+    const filteredPayments = paymentList.filter((p) => {
+      const searchLower = search.toLowerCase();
+        return (
+            p.member_name?.toLowerCase().startsWith(searchLower) ||
+            p.payment_mode?.toLowerCase().startsWith(searchLower) ||
+            p.amount?.toString().includes(searchLower)
+        );
+    })
+
+    const paginatedPayments = filteredPayments.slice(
         (page - 1) * rowsPerPage,
         page * rowsPerPage
     );
@@ -41,13 +52,26 @@ const PaymentList = () => {
                     <h1>Payment History</h1>
                     <p className="membership-subtitle">Monitor recent transactions and revenue flow</p>
                 </div>
-                <div className="header-icon-box">
+                <div className="paymentlist-header">
+                  <div className="header-icon-box">
                     <CreditCard size={24} color="var(--accent-blue)" />
-                </div>
+                  </div>
+                  <div className="elite-search-bar">
+                    <Search size={18} className="s-icon"/>
+                  <input 
+                    type="text"
+                    placeholder="Search Payments..." 
+                    onChange={(e) => {
+                        setSearch(e.target.value);
+                        setPage(1);
+                    }}/> 
+                  </div> 
+                </div> 
             </div>
 
             <div className="glass-table-container">
-                <table className="elite-members-table">
+                <div className="membership-table-wrapper">
+                  <table className="elite-members-table">
                     <thead>
                         <tr>
                             <th>S.NO</th>
@@ -99,7 +123,9 @@ const PaymentList = () => {
                             </tr>
                         )}
                     </tbody>
-                </table>
+                  </table>  
+                </div>
+                
             </div>
 
             {totalPages > 1 && (

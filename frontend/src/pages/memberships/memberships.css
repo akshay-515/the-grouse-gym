@@ -35,6 +35,16 @@
   color: var(--text-dim);
 }
 
+.membership-header-search{
+  gap: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.membership-header-search input{
+  height: 1rem;
+}
+
 .glass-table-container {
   background: var(--glass-bg);
   border: 1px solid var(--border-glass);
@@ -109,6 +119,7 @@
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
 }
 
@@ -200,6 +211,10 @@
 }
 
 .date-cell{
+  justify-content: center;
+}
+
+.membership-status{
   justify-content: center;
 }
 
