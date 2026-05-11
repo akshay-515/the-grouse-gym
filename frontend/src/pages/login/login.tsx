@@ -20,9 +20,14 @@ export default function Login() {
         try {
             const data = await loginUser(username, password);
             console.log("data:", data)
-            auth?.login(data.token);
-            toast.success("Logged in successfully");
-            navigate("/dashboard");
+            if(auth){
+              auth.login(data.token);
+              toast.success("Logged in successfully");
+              navigate("/dashboard");  
+            } else {
+              console.error("Auth context not found!");
+              toast.error("Auth context not found!");
+            }
         } catch (error) {
             console.log("login error", error);
             toast.error("Invalid credentials")
