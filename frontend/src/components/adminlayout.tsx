@@ -3,17 +3,17 @@ import Sidebar from "./sidebar/sidebar"
 import TopNavbar from "./topnavbar/topnavbar"
 
 const AdminLayout = () => {
-    return(
-        <div className="admin-container">
-            <Sidebar />
-            <div className="main-section">
-                <TopNavbar />
-                <div className="page-content">
-                    <Outlet />
-                </div>
-            </div>
+  return(
+    <div className="admin-container">
+      <Sidebar />
+      <div className="main-section">
+        <TopNavbar />
+        <div className="page-content">
+          <Outlet />
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default AdminLayout;

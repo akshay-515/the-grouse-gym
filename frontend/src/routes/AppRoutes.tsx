@@ -13,29 +13,28 @@ import ExpiringMembers from "../pages/expiring/expiring";
 import PaymentList from "../pages/paymentList/paymentList";
 
 const AppRoutes = () => {
-    return(
-        <BrowserRouter>
-          <Toaster position="top-center" />
-          <Routes>
-            <Route path="/" element = {<Login />}/>
-            <Route path="/login" element={<Login />} />
-            
-            <Route element={<ProtectedRoutes />}>
-              <Route element={<AdminLayout />}>
-                <Route path="/dashboard" element = {<Dashboard />} />
-                <Route path="/members/add" element = {<AddMember />}/>
-                <Route path="/members" element={<MemberList />} />
-                <Route path="/members/edit/:id" element={<EditMember />}/>
-                <Route path="/payments" element={<Payments />}/>
-                <Route path="/memberships" element={<Memberships />}/>
-                <Route path="/expiring" element={<ExpiringMembers />}/>
-                <Route path="/payments-list" element={<PaymentList />} />
-              </Route>
-            </Route>
-            
-          </Routes>    
-        </BrowserRouter> 
-    )
+  return(
+    <BrowserRouter>
+      <Toaster position="top-center" />
+      <Routes>
+        <Route path="/" element = {<Login />}/>
+        <Route path="/login" element={<Login />} />
+        
+        <Route element={<ProtectedRoutes />}>
+          <Route element={<AdminLayout />}>
+            <Route path="/dashboard" element = {<Dashboard />} />
+            <Route path="/members/add" element = {<AddMember />}/>
+            <Route path="/members" element={<MemberList />} />
+            <Route path="/members/edit/:id" element={<EditMember />}/>
+            <Route path="/payments" element={<Payments />}/>
+            <Route path="/memberships" element={<Memberships />}/>
+            <Route path="/expiring" element={<ExpiringMembers />}/>
+            <Route path="/payments-list" element={<PaymentList />} />
+          </Route>
+        </Route>
+      </Routes>    
+    </BrowserRouter> 
+  )
 }
 
 export default AppRoutes;

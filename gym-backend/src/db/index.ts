@@ -3,9 +3,9 @@ import config from "../config";
 
 const pool = new Pool({
     connectionString:config.dataBaseUrl,
-    ssl: {
-        rejectUnauthorized: false
-    }
+    ssl: process.env.NODE_ENV === "production" 
+        ? { rejectUnauthorized: false } 
+        : false
 })
 
 pool.on("connect", () => {
