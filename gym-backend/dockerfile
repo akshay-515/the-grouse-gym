@@ -1,0 +1,18 @@
+# Stage 1: Build
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build  # This triggers 'tsc' to create the 'dist' folder
+
+# Stage 2: Run
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+
+EXPOSE 5000
+# Point this to your compiled index.js file inside the dist folder
+CMD ["node", "dist/server.js"]
