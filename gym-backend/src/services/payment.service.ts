@@ -14,6 +14,7 @@
     }
 
     export const createPaymentWithMemberships = async (
+        gymId: number,
         member_id: number,
         amount: number,
         payment_date: string,
@@ -35,8 +36,8 @@
             }
             // check memeber exists
             const memberRes = await client.query(
-                "SELECT id FROM members WHERE id = $1",
-                [member_id]
+                "SELECT id FROM members WHERE id = $1 AND gym_id = $2",
+                [member_id, gymId]
             );
 
             if(memberRes.rowCount === 0){
@@ -46,9 +47,10 @@
             const activeMemberships = await client.query(
                 `SELECT 1 FROM memberships
                 WHERE member_id= $1
+                AND gym_id = $2
                 AND end_date >= CURRENT_DATE
                 LIMIT 1`,
-                [member_id]
+                [member_id, gymId]
             );
             
             if ((activeMemberships.rowCount ?? 0) > 0) {
@@ -57,10 +59,10 @@
 
             //insert payment
             const paymentRes = await client.query(
-                `INSERT INTO payments (member_id, amount, payment_date, payment_mode) 
-                VALUES ($1, $2, $3, $4)
+                `INSERT INTO payments (gym_id, member_id, amount, payment_date, payment_mode) 
+                VALUES ($1, $2, $3, $4, $5)
                 RETURNING *`,
-                [member_id, amount, payment_date, payment_mode]
+                [gymId, member_id, amount, payment_date, payment_mode]
             );
 
             console.log("Payment inserted:", paymentRes.rows[0]);
@@ -69,9 +71,10 @@
                 `SELECT end_date
                 FROM memberships
                 WHERE member_id = $1
+                AND gym_id = $2
                 ORDER BY end_date DESC
                 LIMIT 1`,
-                [member_id]
+                [member_id, gymId]
             );
 
             let startDate: Date;
@@ -95,10 +98,10 @@
 
             // Insert memberships
             const membershipInsert = await client.query(
-                `INSERT INTO memberships (member_id, plan_type, start_date, end_date) 
-                VALUES ($1, $2 , $3 ,$4)
+                `INSERT INTO memberships (gym_id, member_id, plan_type, start_date, end_date) 
+                VALUES ($1, $2 , $3 ,$4, $5)
                 RETURNING *`,
-                [member_id, plan_type, startDate, endDate]
+                [gymId, member_id, plan_type, startDate, endDate]
             );
 
             await client.query("COMMIT");

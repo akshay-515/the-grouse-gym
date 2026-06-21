@@ -6,6 +6,7 @@ export const createPayment = async (req: Request, res: Response) => {
         const { member_id, amount, payment_date, payment_mode, plan_type } = req.body;
 
         const result = await createPaymentWithMemberships(
+            req.user!.gymId,
             member_id,
             amount,
             payment_date,

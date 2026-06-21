@@ -8,7 +8,7 @@ interface Member{
     joined_date: string;
 }
 
-export const createMemberService = async (data: Member) => {    
+export const createMemberService = async (gymId: number, data: Member) => {    
     const { name, phone, age, gender, joined_date } = data;
 
     if(!name || !phone || !age || !gender || !joined_date){
@@ -16,27 +16,28 @@ export const createMemberService = async (data: Member) => {
     }
 
     const result = await db.query(
-        `INSERT INTO members ( name, phone, age, gender, joined_date)
-         VALUES ($1, $2, $3, $4, $5)
+        `INSERT INTO members (gym_id, name, phone, age, gender, joined_date)
+         VALUES ($1, $2, $3, $4, $5, $6)
          RETURNING *`,
-        [name, phone, age, gender, joined_date]
+        [gymId, name, phone, age, gender, joined_date]
     );
 
     return result.rows[0];
 };
 
-export const getAllMembersService = async () => {
+export const getAllMembersService = async (gymId: number) => {
     const result = await db.query(
-        "SELECT * from members ORDER BY created_at DESC" 
+        "SELECT * from members WHERE gym_id = $1 ORDER BY created_at DESC",
+        [gymId] 
         
     );
     return result.rows;
 };
 
-export const getMemberByIdService = async (id: number) => {
+export const getMemberByIdService = async (id: number, gymId: number) => {
     const result = await db.query(
-        "SELECT * FROM members WHERE id=$1",
-        [id]
+        "SELECT * FROM members WHERE id=$1 AND gym_id = $2",
+        [id, gymId]
     );
 
     if (result.rows.length === 0){
@@ -46,10 +47,10 @@ export const getMemberByIdService = async (id: number) => {
     return result.rows[0];
 };
 
-export const updateMemberService = async (id: number, data: any) => {
+export const updateMemberService = async (gymId: number, id: number, data: any) => {
     // const {name, phone, age, gender} = data;
 
-    const existing = await getMemberByIdService(id);
+    const existing = await getMemberByIdService(id, gymId);
     if(!existing) {
         throw new Error("Member not found")
     }
@@ -66,8 +67,9 @@ export const updateMemberService = async (id: number, data: any) => {
             age = $3,
             gender = $4
          WHERE id = $5 
+         AND gym_id = $6
          RETURNING *`,
-        [updatedName, updatedPhone, updatedAge, updatedGender, id]
+        [updatedName, updatedPhone, updatedAge, updatedGender, id, gymId]
     );
 
     if (result.rows.length === 0) {
@@ -77,10 +79,10 @@ export const updateMemberService = async (id: number, data: any) => {
     return result.rows[0];
 };
 
-export const deleteMemberService = async (id: number) => {
+export const deleteMemberService = async (id: number, gymId: number) => {
     const result = await db.query(
-        `DELETE FROM members WHERE id = $1 RETURNING *`,
-        [id]
+        `DELETE FROM members WHERE id = $1 AND gym_id = $2 RETURNING *`,
+        [id, gymId]
     );
 
     if(result.rows.length === 0){
@@ -103,26 +105,33 @@ export const deleteMemberService = async (id: number) => {
 //     return result.rows;
 // }
 
-export const getEligibleMembersService = async (memberId?: number) => {
+export const getEligibleMembersService = async (
+    gymId: number,
+    memberId?: number
+) => {
+
     let query = `
-      SELECT DISTINCT m.id, m.name
-      FROM members m
-      LEFT JOIN memberships ms 
-        ON m.id = ms.member_id
-        AND ms.end_date >= CURRENT_DATE
-      WHERE ms.id IS NULL
+        SELECT DISTINCT m.id, m.name
+        FROM members m
+        LEFT JOIN memberships ms
+            ON m.id = ms.member_id
+            AND ms.end_date >= CURRENT_DATE
+        WHERE (
+            m.gym_id = $1
+            AND ms.id IS NULL
+        )
     `;
 
-    const values: any[] = [];
+    const values: any[] = [gymId];
 
     if (memberId) {
-        query += ` OR m.id = $1`;
+        query += ` OR (m.id = $2 AND m.gym_id = $1)`;
         values.push(memberId);
     }
 
     query += ` ORDER BY m.name ASC`;
 
     const result = await db.query(query, values);
-    console.log("Query result:", result.rows);
+
     return result.rows;
 };

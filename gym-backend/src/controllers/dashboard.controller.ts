@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 export const dashboard = async (req: Request, res: Response) => {
     try {
-        const data = await getDashboardStats();
+        const data = await getDashboardStats(req.user!.gymId);
         res.status(200).json({
             success: true,
             data

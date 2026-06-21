@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 export const getMemberships = async (req: Request, res: Response) => {
     try {
-        const data = await getAllMembershipsService();
+        const data = await getAllMembershipsService(req.user!.gymId);
 
         res.status(200).json({
             success: true,

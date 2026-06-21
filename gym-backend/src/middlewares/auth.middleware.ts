@@ -17,9 +17,26 @@ export const authenticate = (
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    (req as any).user = decoded;
-    next();
+    // const decoded = jwt.verify(token, JWT_SECRET);
+    // (req as any).user = decoded;
+    // next();
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET!
+    ) as {
+      userId: number;
+      gymId: number;
+    };
+
+    req.user = {
+      userId: decoded.userId,
+      gymId: decoded.gymId
+    };
+
+    console.log(req.user);
+
+next();
   } catch {
     return res.status(401).json({ message: "Invalid token" });
   }

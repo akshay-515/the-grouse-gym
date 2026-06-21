@@ -20,7 +20,12 @@ export const loginOwner = async (username: string, password: string) => {
       throw new Error("Invalid credentials");
     }
 
-    const token = generateToken(user.id);
+    // const token = generateToken(user.id);
+
+    const token = generateToken({
+      userId: user.id,
+      gymId: user.gym_id
+    });
 
     return {
       token,
