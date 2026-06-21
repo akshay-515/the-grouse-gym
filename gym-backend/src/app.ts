@@ -14,14 +14,17 @@ const app: Application = express();
 //middleware
 app.use(cors({
   origin: function (origin, callback) {
+
+    console.log("CORS Origin:", origin);
     if (!origin) return callback(null, true);
 
-    // allow localhost
-    if (origin === "http://localhost:5173") {
+    if (
+      origin === "http://localhost:5173" ||
+      origin === "http://localhost:3000"
+    ) {
       return callback(null, true);
     }
 
-    // allow ALL vercel domains
     if (origin.includes("vercel.app")) {
       return callback(null, true);
     }
